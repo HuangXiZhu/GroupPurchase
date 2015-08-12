@@ -8,14 +8,36 @@
 
 #import "ZYHomeTopItem.h"
 
+@interface ZYHomeTopItem ()
+@property (weak, nonatomic) IBOutlet UIButton *iconBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
+@end
+
+
 @implementation ZYHomeTopItem
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
++ (instancetype)homeTopItem
+{
+    return [[self alloc] init];
 }
-*/
 
+- (void)awakeFromNib
+{
+    //这一句，可以让xib里面的autolayout尺寸不随着controller的变化而变化
+    self.autoresizingMask = UIViewAutoresizingNone;
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self = [[[NSBundle mainBundle] loadNibNamed:@"ZYHomeTopItem" owner:nil options:nil] lastObject];
+    }
+    return self;
+}
+
+
+- (void)addTarget:(id)target action:(SEL)action
+{
+    [self.iconBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
 @end

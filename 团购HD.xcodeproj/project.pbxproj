@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		093480F01B7A1A64000B2875 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480E61B7A1A64000B2875 /* ZYNavigationController.m */; };
+		093480F11B7A1A64000B2875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480EA1B7A1A64000B2875 /* AppDelegate.m */; };
+		093480F21B7A1A64000B2875 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480EC1B7A1A64000B2875 /* UIView+Extension.m */; };
+		093480F31B7A1A64000B2875 /* ZYConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480EE1B7A1A64000B2875 /* ZYConst.m */; };
+		093480F71B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480F61B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.m */; };
+		093480FA1B7A24B4000B2875 /* ZYHomeTopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480F91B7A24B4000B2875 /* ZYHomeTopItem.m */; };
+		093480FC1B7A24CB000B2875 /* ZYHomeTopItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093480FB1B7A24CB000B2875 /* ZYHomeTopItem.xib */; };
+		093481011B7A31A9000B2875 /* ZYHomeDropdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 093481001B7A31A9000B2875 /* ZYHomeDropdown.m */; };
+		093481031B7A31BA000B2875 /* ZYHomeDropdown.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093481021B7A31BA000B2875 /* ZYHomeDropdown.xib */; };
+		093481061B7A4A05000B2875 /* ZYCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093481051B7A4A05000B2875 /* ZYCategoryViewController.m */; };
 		09B180571B778DA700FD0F7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180561B778DA700FD0F7E /* main.m */; };
-		09B1805A1B778DA700FD0F7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180591B778DA700FD0F7E /* AppDelegate.m */; };
 		09B1805D1B778DA700FD0F7E /* __HD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09B1805B1B778DA700FD0F7E /* __HD.xcdatamodeld */; };
-		09B180601B778DA700FD0F7E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B1805F1B778DA700FD0F7E /* ViewController.m */; };
-		09B180631B778DA700FD0F7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B180611B778DA700FD0F7E /* Main.storyboard */; };
 		09B180651B778DA700FD0F7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B180641B778DA700FD0F7E /* Images.xcassets */; };
-		09B180681B778DA700FD0F7E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09B180661B778DA700FD0F7E /* LaunchScreen.xib */; };
 		09B180741B778DA700FD0F7E /* __HDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180731B778DA700FD0F7E /* __HDTests.m */; };
+		09B180911B7792CE00FD0F7E /* ZYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180901B7792CE00FD0F7E /* ZYHomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,20 +35,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		093480E51B7A1A64000B2875 /* ZYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavigationController.h; sourceTree = "<group>"; };
+		093480E61B7A1A64000B2875 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
+		093480E91B7A1A64000B2875 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		093480EA1B7A1A64000B2875 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		093480EB1B7A1A64000B2875 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		093480EC1B7A1A64000B2875 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		093480ED1B7A1A64000B2875 /* ZYConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYConst.h; sourceTree = "<group>"; };
+		093480EE1B7A1A64000B2875 /* ZYConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYConst.m; sourceTree = "<group>"; };
+		093480F51B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+ZYExtension.h"; sourceTree = "<group>"; };
+		093480F61B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+ZYExtension.m"; sourceTree = "<group>"; };
+		093480F81B7A24B4000B2875 /* ZYHomeTopItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHomeTopItem.h; sourceTree = "<group>"; };
+		093480F91B7A24B4000B2875 /* ZYHomeTopItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHomeTopItem.m; sourceTree = "<group>"; };
+		093480FB1B7A24CB000B2875 /* ZYHomeTopItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZYHomeTopItem.xib; sourceTree = "<group>"; };
+		093480FF1B7A31A9000B2875 /* ZYHomeDropdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHomeDropdown.h; sourceTree = "<group>"; };
+		093481001B7A31A9000B2875 /* ZYHomeDropdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHomeDropdown.m; sourceTree = "<group>"; };
+		093481021B7A31BA000B2875 /* ZYHomeDropdown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZYHomeDropdown.xib; sourceTree = "<group>"; };
+		093481041B7A4A05000B2875 /* ZYCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCategoryViewController.h; sourceTree = "<group>"; };
+		093481051B7A4A05000B2875 /* ZYCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCategoryViewController.m; sourceTree = "<group>"; };
 		09B180511B778DA700FD0F7E /* 团购HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "团购HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B180551B778DA700FD0F7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09B180561B778DA700FD0F7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		09B180581B778DA700FD0F7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		09B180591B778DA700FD0F7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		09B1805C1B778DA700FD0F7E /* __HD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = __HD.xcdatamodel; sourceTree = "<group>"; };
-		09B1805E1B778DA700FD0F7E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		09B1805F1B778DA700FD0F7E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		09B180621B778DA700FD0F7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09B180641B778DA700FD0F7E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		09B180671B778DA700FD0F7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		09B1806D1B778DA700FD0F7E /* 团购HDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "团购HDTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B180721B778DA700FD0F7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09B180731B778DA700FD0F7E /* __HDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __HDTests.m; sourceTree = "<group>"; };
+		09B1808F1B7792CE00FD0F7E /* ZYHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHomeViewController.h; sourceTree = "<group>"; };
+		09B180901B7792CE00FD0F7E /* ZYHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +83,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		093480E31B7A1A64000B2875 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				093480F41B7A1E7A000B2875 /* Category */,
+				093480E41B7A1A64000B2875 /* Controller */,
+				093480E71B7A1A64000B2875 /* Lib */,
+				093480E81B7A1A64000B2875 /* Other */,
+				093480EF1B7A1A64000B2875 /* Tool */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		093480E41B7A1A64000B2875 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				093480E51B7A1A64000B2875 /* ZYNavigationController.h */,
+				093480E61B7A1A64000B2875 /* ZYNavigationController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		093480E71B7A1A64000B2875 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		093480E81B7A1A64000B2875 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				093480E91B7A1A64000B2875 /* AppDelegate.h */,
+				093480EA1B7A1A64000B2875 /* AppDelegate.m */,
+				093480EB1B7A1A64000B2875 /* UIView+Extension.h */,
+				093480EC1B7A1A64000B2875 /* UIView+Extension.m */,
+				093480ED1B7A1A64000B2875 /* ZYConst.h */,
+				093480EE1B7A1A64000B2875 /* ZYConst.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		093480EF1B7A1A64000B2875 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		093480F41B7A1E7A000B2875 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				093480F51B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.h */,
+				093480F61B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		09B180481B778DA700FD0F7E = {
 			isa = PBXGroup;
 			children = (
@@ -83,14 +161,7 @@
 		09B180531B778DA700FD0F7E /* 团购HD */ = {
 			isa = PBXGroup;
 			children = (
-				09B180581B778DA700FD0F7E /* AppDelegate.h */,
-				09B180591B778DA700FD0F7E /* AppDelegate.m */,
-				09B1805E1B778DA700FD0F7E /* ViewController.h */,
-				09B1805F1B778DA700FD0F7E /* ViewController.m */,
-				09B180611B778DA700FD0F7E /* Main.storyboard */,
-				09B180641B778DA700FD0F7E /* Images.xcassets */,
-				09B180661B778DA700FD0F7E /* LaunchScreen.xib */,
-				09B1805B1B778DA700FD0F7E /* __HD.xcdatamodeld */,
+				09B1807D1B7790D200FD0F7E /* Classes */,
 				09B180541B778DA700FD0F7E /* Supporting Files */,
 			);
 			path = "团购HD";
@@ -99,6 +170,8 @@
 		09B180541B778DA700FD0F7E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09B180641B778DA700FD0F7E /* Images.xcassets */,
+				09B1805B1B778DA700FD0F7E /* __HD.xcdatamodeld */,
 				09B180551B778DA700FD0F7E /* Info.plist */,
 				09B180561B778DA700FD0F7E /* main.m */,
 			);
@@ -120,6 +193,56 @@
 				09B180721B778DA700FD0F7E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		09B1807D1B7790D200FD0F7E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				093480E31B7A1A64000B2875 /* Main */,
+				09B1808B1B77926C00FD0F7E /* Home */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		09B1808B1B77926C00FD0F7E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				09B1808C1B77926C00FD0F7E /* Controller */,
+				09B1808D1B77926C00FD0F7E /* Model */,
+				09B1808E1B77926C00FD0F7E /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		09B1808C1B77926C00FD0F7E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				09B1808F1B7792CE00FD0F7E /* ZYHomeViewController.h */,
+				09B180901B7792CE00FD0F7E /* ZYHomeViewController.m */,
+				093481041B7A4A05000B2875 /* ZYCategoryViewController.h */,
+				093481051B7A4A05000B2875 /* ZYCategoryViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		09B1808D1B77926C00FD0F7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		09B1808E1B77926C00FD0F7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				093480F81B7A24B4000B2875 /* ZYHomeTopItem.h */,
+				093480F91B7A24B4000B2875 /* ZYHomeTopItem.m */,
+				093480FB1B7A24CB000B2875 /* ZYHomeTopItem.xib */,
+				093480FF1B7A31A9000B2875 /* ZYHomeDropdown.h */,
+				093481001B7A31A9000B2875 /* ZYHomeDropdown.m */,
+				093481021B7A31BA000B2875 /* ZYHomeDropdown.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +289,7 @@
 		09B180491B778DA700FD0F7E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ZY;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "王志盼";
 				TargetAttributes = {
@@ -202,8 +326,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09B180631B778DA700FD0F7E /* Main.storyboard in Resources */,
-				09B180681B778DA700FD0F7E /* LaunchScreen.xib in Resources */,
+				093480FC1B7A24CB000B2875 /* ZYHomeTopItem.xib in Resources */,
+				093481031B7A31BA000B2875 /* ZYHomeDropdown.xib in Resources */,
 				09B180651B778DA700FD0F7E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,10 +346,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09B1805A1B778DA700FD0F7E /* AppDelegate.m in Sources */,
+				093480F21B7A1A64000B2875 /* UIView+Extension.m in Sources */,
+				093480F71B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.m in Sources */,
 				09B1805D1B778DA700FD0F7E /* __HD.xcdatamodeld in Sources */,
-				09B180601B778DA700FD0F7E /* ViewController.m in Sources */,
+				093481061B7A4A05000B2875 /* ZYCategoryViewController.m in Sources */,
 				09B180571B778DA700FD0F7E /* main.m in Sources */,
+				093481011B7A31A9000B2875 /* ZYHomeDropdown.m in Sources */,
+				093480F01B7A1A64000B2875 /* ZYNavigationController.m in Sources */,
+				09B180911B7792CE00FD0F7E /* ZYHomeViewController.m in Sources */,
+				093480F31B7A1A64000B2875 /* ZYConst.m in Sources */,
+				093480F11B7A1A64000B2875 /* AppDelegate.m in Sources */,
+				093480FA1B7A24B4000B2875 /* ZYHomeTopItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,25 +377,6 @@
 			targetProxy = 09B1806E1B778DA700FD0F7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		09B180611B778DA700FD0F7E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				09B180621B778DA700FD0F7E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		09B180661B778DA700FD0F7E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				09B180671B778DA700FD0F7E /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		09B180751B778DA700FD0F7E /* Debug */ = {
@@ -353,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "团购HD/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,6 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "团购HD/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -422,6 +536,7 @@
 				09B180791B778DA700FD0F7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09B1807A1B778DA700FD0F7E /* Build configuration list for PBXNativeTarget "团购HDTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +545,7 @@
 				09B1807C1B778DA700FD0F7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

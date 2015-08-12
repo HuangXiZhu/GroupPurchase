@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZYHomeDropdown">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="380"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Okn-34-i05" userLabel="主表">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="380"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NvC-kW-CcN" userLabel="从表">
+                    <rect key="frame" x="200" y="0.0" width="200" height="380"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Okn-34-i05" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Ct-Ve-gD6"/>
+                <constraint firstItem="Okn-34-i05" firstAttribute="width" secondItem="NvC-kW-CcN" secondAttribute="width" id="Kah-hT-ePM"/>
+                <constraint firstAttribute="bottom" secondItem="Okn-34-i05" secondAttribute="bottom" id="Q6H-nE-GM5"/>
+                <constraint firstAttribute="trailing" secondItem="NvC-kW-CcN" secondAttribute="trailing" id="SRC-xa-R4u"/>
+                <constraint firstAttribute="bottom" secondItem="NvC-kW-CcN" secondAttribute="bottom" id="gdu-kU-LM5"/>
+                <constraint firstItem="NvC-kW-CcN" firstAttribute="leading" secondItem="Okn-34-i05" secondAttribute="trailing" id="iI6-hk-vy2"/>
+                <constraint firstItem="NvC-kW-CcN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xXj-BH-Kst"/>
+                <constraint firstItem="Okn-34-i05" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xmH-DW-09O"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mainTableView" destination="Okn-34-i05" id="jTe-aP-6KW"/>
+                <outlet property="subTableview" destination="NvC-kW-CcN" id="QIX-1B-dzG"/>
+            </connections>
+            <point key="canvasLocation" x="222" y="-2"/>
         </view>
     </objects>
 </document>

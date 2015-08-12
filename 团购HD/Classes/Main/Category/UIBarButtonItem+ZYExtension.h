@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIBarButtonItem (ZYExtension)
-
++ (UIBarButtonItem *)barButtonItemWithTarget:(id)target action:(SEL)action normalImage:(NSString *)normalImage highImage:(NSString *)highImage;
 @end

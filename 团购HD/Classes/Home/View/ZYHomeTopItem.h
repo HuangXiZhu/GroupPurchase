@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ZYHomeTopItem : UIView
++ (instancetype)homeTopItem;
 
+- (void)addTarget:(id)target action:(SEL)action;
 @end

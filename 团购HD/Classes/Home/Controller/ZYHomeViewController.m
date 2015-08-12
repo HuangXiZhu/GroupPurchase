@@ -7,41 +7,81 @@
 //
 
 #import "ZYHomeViewController.h"
-
+#import "ZYConst.h"
+#import "UIBarButtonItem+ZYExtension.h"
+#import "UIView+Extension.h"
+#import "ZYHomeTopItem.h"
+#import "ZYCategoryViewController.h"
 @interface ZYHomeViewController ()
-
+@property (nonatomic, weak) UIBarButtonItem *categoryItem;
+@property (nonatomic, weak) UIBarButtonItem *districtItem;
+@property (nonatomic, weak) UIBarButtonItem *sortItem;
 @end
 
 @implementation ZYHomeViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 
+- (instancetype)init
+{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    return [self initWithCollectionViewLayout:layout];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
+    self.collectionView.backgroundColor = ZYGlobalBg;
+    
+    [self setupLeftNar];
+    
+    [self setupRightNar];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupLeftNar
+{
+    UIBarButtonItem *logoItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_meituan_logo"] style:UIBarButtonItemStyleDone target:nil action:nil];
+    logoItem.enabled = NO;
+    
+    ZYHomeTopItem *categoryTopItem = [ZYHomeTopItem homeTopItem];
+    [categoryTopItem addTarget:self action:@selector(didClickCategoryTopItem)];
+    UIBarButtonItem *categoryItem = [[UIBarButtonItem alloc] initWithCustomView:categoryTopItem];
+    self.categoryItem = categoryItem;
+    
+    ZYHomeTopItem *districtTopItem = [ZYHomeTopItem homeTopItem];
+    [districtTopItem addTarget:self action:nil];
+    UIBarButtonItem *districtItem = [[UIBarButtonItem alloc] initWithCustomView:districtTopItem];
+    self.districtItem = districtItem;
+    
+    ZYHomeTopItem *sortTopItem = [ZYHomeTopItem homeTopItem];
+    [sortTopItem addTarget:self action:nil];
+    UIBarButtonItem *sortItem = [[UIBarButtonItem alloc] initWithCustomView:sortTopItem];
+    self.sortItem = sortItem;
+    
+    self.navigationItem.leftBarButtonItems = @[logoItem, categoryItem, districtItem, sortItem];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setupRightNar
+{
+    UIBarButtonItem *mapItem = [UIBarButtonItem barButtonItemWithTarget:nil action:nil normalImage:@"icon_map" highImage:@"icon_map_highlighted"];
+    mapItem.customView.width = 65;
+    
+    UIBarButtonItem *searchItem = [UIBarButtonItem barButtonItemWithTarget:nil action:nil normalImage:@"icon_search" highImage:@"icon_search_highlighted"];
+    searchItem.customView.width = 65;
+    
+    self.navigationItem.rightBarButtonItems = @[mapItem, searchItem];
 }
-*/
+
+
+#pragma mark ----clickItem
+- (void)didClickCategoryTopItem
+{
+    UIPopoverController *popVc = [[UIPopoverController alloc] initWithContentViewController:[[ZYCategoryViewController alloc] init]];
+    
+    [popVc presentPopoverFromBarButtonItem:self.categoryItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
 
 #pragma mark <UICollectionViewDataSource>
 

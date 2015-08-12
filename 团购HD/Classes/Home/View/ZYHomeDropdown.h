@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZYHomeDropdown : UIView
-
++ (instancetype)homeDropdown;
 @end
