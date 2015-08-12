@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ZYNavigationController.h
 //  团购HD
 //
 //  Created by 王志盼 on 15/8/9.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ZYNavigationController : UINavigationController
 
 @end
-
