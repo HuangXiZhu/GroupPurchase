@@ -7,7 +7,7 @@
 //
 
 #import "ZYCityViewController.h"
-
+#import "UIBarButtonItem+ZYExtension.h"
 @interface ZYCityViewController ()
 
 @end
@@ -17,21 +17,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self setupNar];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupNar
+{
+    self.navigationItem.title = @"切换城市";
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithTarget:self action:@selector(clickLeftBarButton) normalImage:@"btn_navigation_close" highImage:@"btn_navigation_close_hl"];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)clickLeftBarButton
+{
+    if ([self.delegate respondsToSelector:@selector(ZYCityViewController:didClickLeftBarButton:)]) {
+        [self.delegate ZYCityViewController:self didClickLeftBarButton:nil];
+    }
 }
-*/
 
 @end

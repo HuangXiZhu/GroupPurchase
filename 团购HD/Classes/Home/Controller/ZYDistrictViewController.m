@@ -8,8 +8,9 @@
 
 #import "ZYDistrictViewController.h"
 #import "ZYCityViewController.h"
+#import "UIBarButtonItem+ZYExtension.h"
 
-@interface ZYDistrictViewController ()
+@interface ZYDistrictViewController () <ZYCityViewControllerDelegate>
 
 - (IBAction)changeCity:(id)sender;
 @end
@@ -19,14 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
 }
 
 - (IBAction)changeCity:(id)sender {
     
-    UINavigationController *nVc = [[UINavigationController alloc] initWithRootViewController:[[ZYCityViewController alloc] initWithNibName:@"ZYCityViewController" bundle:nil]];
-    
+    ZYCityViewController *cityVc = [[ZYCityViewController alloc] initWithNibName:@"ZYCityViewController" bundle:nil];
+    UINavigationController *nVc = [[UINavigationController alloc] initWithRootViewController:cityVc];
+    cityVc.delegate = self;
     nVc.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:nVc animated:YES completion:nil];
+}
+
+#pragma mark ----ZYCityViewControllerDelegate
+
+- (void)ZYCityViewController:(ZYCityViewController *)cityVc didClickLeftBarButton:(UIBarButtonItem *)leftBarButton
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
