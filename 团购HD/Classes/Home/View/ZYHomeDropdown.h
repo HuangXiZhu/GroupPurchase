@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZYCategory;
+
 @interface ZYHomeDropdown : UIView
+@property (nonatomic, strong) NSArray *categories;
 + (instancetype)homeDropdown;
 @end

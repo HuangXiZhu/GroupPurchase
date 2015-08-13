@@ -9,6 +9,8 @@
 #import "ZYCategoryViewController.h"
 #import "ZYHomeDropdown.h"
 #import "UIView+Extension.h"
+#import "ZYCategory.h"
+#import "MJExtension.h"
 @interface ZYCategoryViewController ()
 
 @end
@@ -20,6 +22,8 @@
     // Do any additional setup after loading the view.
     
     ZYHomeDropdown *dropdown = [ZYHomeDropdown homeDropdown];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"categories.plist" ofType:nil];
+    dropdown.categories = [ZYCategory objectArrayWithFile:path];
     [self.view addSubview:dropdown];
     
     // 设置控制器view在popover中的尺寸

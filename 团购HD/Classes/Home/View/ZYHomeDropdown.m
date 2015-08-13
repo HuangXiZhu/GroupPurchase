@@ -7,11 +7,16 @@
 //
 
 #import "ZYHomeDropdown.h"
-
+#import "ZYCategory.h"
+#import "ZYHomeMainCell.h"
+#import "ZYHomeSubCell.h"
+#import "ZYCategory.h"
+#import "ZYHomeSubCell.h"
 @interface ZYHomeDropdown () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UITableView *subTableview;
-
+//主表中被选的cell的model，用来刷新从表中的数据
+@property (nonatomic, strong) ZYCategory *selectedCategory;
 @end
 
 @implementation ZYHomeDropdown
@@ -52,12 +57,37 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    if (self.mainTableView == tableView) {
+        return self.categories.count;
+    }
+    else{
+        return self.selectedCategory.subcategories.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    return cell;
+    if (tableView == self.mainTableView) {
+        ZYHomeMainCell *cell = [ZYHomeMainCell mainCellWithTableView:tableView];
+        cell.category = self.categories[indexPath.row];
+        return cell;
+    }
+    else{
+        ZYHomeSubCell *cell = [ZYHomeSubCell subCellWithTableView:tableView];
+        cell.subcategory = self.selectedCategory.subcategories[indexPath.row];
+        return cell;
+    }
+}
+
+
+#pragma mark ----UITabelViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.mainTableView) {
+        ZYHomeMainCell *cell = (ZYHomeMainCell *)[tableView cellForRowAtIndexPath:indexPath];
+        self.selectedCategory = cell.category;
+        [self.subTableview reloadData];
+    }
+    
 }
 @end

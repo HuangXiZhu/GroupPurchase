@@ -12,6 +12,7 @@
 #import "UIView+Extension.h"
 #import "ZYHomeTopItem.h"
 #import "ZYCategoryViewController.h"
+#import "ZYDistrictViewController.h"
 @interface ZYHomeViewController ()
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
 @property (nonatomic, weak) UIBarButtonItem *districtItem;
@@ -51,7 +52,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.categoryItem = categoryItem;
     
     ZYHomeTopItem *districtTopItem = [ZYHomeTopItem homeTopItem];
-    [districtTopItem addTarget:self action:nil];
+    [districtTopItem addTarget:self action:@selector(didClickDistrictTopItem)];
     UIBarButtonItem *districtItem = [[UIBarButtonItem alloc] initWithCustomView:districtTopItem];
     self.districtItem = districtItem;
     
@@ -83,6 +84,12 @@ static NSString * const reuseIdentifier = @"Cell";
     [popVc presentPopoverFromBarButtonItem:self.categoryItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
+- (void)didClickDistrictTopItem
+{
+    UIPopoverController *popVc = [[UIPopoverController alloc] initWithContentViewController:[[ZYDistrictViewController alloc] init]];
+    
+    [popVc presentPopoverFromBarButtonItem:self.districtItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
