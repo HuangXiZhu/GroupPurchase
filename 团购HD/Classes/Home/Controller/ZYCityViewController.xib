@@ -6,6 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZYCityViewController">
             <connections>
+                <outlet property="coverBtn" destination="U5q-1H-WNy" id="paZ-8b-fnH"/>
+                <outlet property="searchBar" destination="O5T-lO-ati" id="GHA-ec-O0A"/>
+                <outlet property="searchBarTopConstraint" destination="OUg-js-wfC" id="MPt-GH-zYx"/>
+                <outlet property="tableView" destination="w5T-1S-Ulm" id="loa-Rl-zLm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +17,43 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="请输入城市名或者拼音" translatesAutoresizingMaskIntoConstraints="NO" id="O5T-lO-ati">
+                    <rect key="frame" x="10" y="59" width="300" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="b9o-dp-rau"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w5T-1S-Ulm">
+                    <rect key="frame" x="0.0" y="118" width="320" height="362"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5q-1H-WNy" userLabel="coverBtn">
+                    <rect key="frame" x="0.0" y="118" width="320" height="362"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickCoverBtn:" destination="-1" eventType="touchUpInside" id="KKN-Td-1ML"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="U5q-1H-WNy" firstAttribute="top" secondItem="O5T-lO-ati" secondAttribute="bottom" constant="15" id="99r-YF-OIc"/>
+                <constraint firstItem="w5T-1S-Ulm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FhM-1I-GAk"/>
+                <constraint firstAttribute="trailing" secondItem="U5q-1H-WNy" secondAttribute="trailing" id="GAm-9Q-MFr"/>
+                <constraint firstAttribute="bottom" secondItem="w5T-1S-Ulm" secondAttribute="bottom" id="KhH-wQ-gK3"/>
+                <constraint firstItem="O5T-lO-ati" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="59" id="OUg-js-wfC"/>
+                <constraint firstAttribute="trailing" secondItem="w5T-1S-Ulm" secondAttribute="trailing" id="PxG-IU-ppg"/>
+                <constraint firstAttribute="bottom" secondItem="U5q-1H-WNy" secondAttribute="bottom" id="YaM-Yq-Ky9"/>
+                <constraint firstItem="U5q-1H-WNy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hAj-pU-6xh"/>
+                <constraint firstItem="w5T-1S-Ulm" firstAttribute="top" secondItem="O5T-lO-ati" secondAttribute="bottom" constant="15" id="rNo-Fj-4ed"/>
+                <constraint firstItem="O5T-lO-ati" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="rda-hV-tsb"/>
+                <constraint firstAttribute="trailing" secondItem="O5T-lO-ati" secondAttribute="trailing" constant="10" id="zSh-ZM-25S"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="254" y="285"/>
         </view>
