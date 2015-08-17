@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ZYHomeSubCell : UITableViewCell
-@property (nonatomic, copy) NSString *subcategory;
 
 + (instancetype)subCellWithTableView:(UITableView *)tableView;
 @end

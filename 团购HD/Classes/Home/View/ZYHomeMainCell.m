@@ -35,31 +35,4 @@
     }
     return self;
 }
-
-- (void)setCategory:(ZYCategory *)category
-{
-    _category = category;
-    self.imageView.image = [UIImage imageNamed:category.small_icon];
-    self.textLabel.text = category.name;
-}
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-    if (selected) {
-        self.imageView.image = [UIImage imageNamed:_category.small_highlighted_icon];
-    }
-    else{
-        self.imageView.image = [UIImage imageNamed:_category.small_icon];
-    }
-}
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-
-
 @end

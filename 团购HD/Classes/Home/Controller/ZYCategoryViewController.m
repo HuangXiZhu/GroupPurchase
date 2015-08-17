@@ -11,7 +11,8 @@
 #import "UIView+Extension.h"
 #import "ZYCategory.h"
 #import "MJExtension.h"
-@interface ZYCategoryViewController ()
+#import "ZYMetaTool.h"
+@interface ZYCategoryViewController () <ZYHomeDropdownDataSource>
 
 @end
 
@@ -22,12 +23,36 @@
     // Do any additional setup after loading the view.
     
     ZYHomeDropdown *dropdown = [ZYHomeDropdown homeDropdown];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"categories.plist" ofType:nil];
-    dropdown.categories = [ZYCategory objectArrayWithFile:path];
+    dropdown.dataSource = self;
     [self.view addSubview:dropdown];
     
     // 设置控制器view在popover中的尺寸
     self.preferredContentSize = dropdown.size;
 }
 
+#pragma mark ----ZYHomeDropdownDataSource
+- (NSUInteger)numberOfRowsInMainTable:(ZYHomeDropdown *)homeDropdown
+{
+    return [ZYMetaTool categories].count;
+}
+
+- (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown titleForRowInMainTable:(NSUInteger)row
+{
+    return [[ZYMetaTool categories][row] name];
+}
+
+- (NSArray *)homeDropdown:(ZYHomeDropdown *)homeDropdown subDataForRowInMainTable:(NSUInteger)row
+{
+    return [[ZYMetaTool categories][row] subcategories];
+}
+
+- (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown normalIconForRowInMainTable:(NSUInteger)row
+{
+    return [[ZYMetaTool categories][row] small_icon];
+}
+
+- (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown selectedIconForRowInMainTable:(NSUInteger)row
+{
+    return [[ZYMetaTool categories][row] small_highlighted_icon];
+}
 @end

@@ -10,7 +10,6 @@
 
 @class ZYCategory;
 @interface ZYHomeMainCell : UITableViewCell
-@property (nonatomic, strong) ZYCategory *category;
 
 + (instancetype)mainCellWithTableView:(UITableView *)tableView;
 @end

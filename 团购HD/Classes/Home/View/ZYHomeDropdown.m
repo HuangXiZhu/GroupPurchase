@@ -15,8 +15,8 @@
 @interface ZYHomeDropdown () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UITableView *subTableview;
-//主表中被选的cell的model，用来刷新从表中的数据
-@property (nonatomic, strong) ZYCategory *selectedCategory;
+//主表中被选的cell的row
+@property (nonatomic, assign) int selectedMainRow;
 @end
 
 @implementation ZYHomeDropdown
@@ -58,10 +58,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (self.mainTableView == tableView) {
-        return self.categories.count;
+        return [self.dataSource numberOfRowsInMainTable:self];
     }
     else{
-        return self.selectedCategory.subcategories.count;
+        return [self.dataSource homeDropdown:self subDataForRowInMainTable:self.selectedMainRow].count;
     }
 }
 
@@ -69,12 +69,36 @@
 {
     if (tableView == self.mainTableView) {
         ZYHomeMainCell *cell = [ZYHomeMainCell mainCellWithTableView:tableView];
-        cell.category = self.categories[indexPath.row];
+        cell.textLabel.text = [self.dataSource homeDropdown:self titleForRowInMainTable:indexPath.row];
+        
+        if ([self.dataSource respondsToSelector:@selector(homeDropdown:normalIconForRowInMainTable:)]) {
+            
+            cell.imageView.image = [UIImage imageNamed:[self.dataSource homeDropdown:self normalIconForRowInMainTable:indexPath.row]];
+        }
+        
+        if ([self.dataSource respondsToSelector:@selector(homeDropdown:selectedIconForRowInMainTable:)]) {
+            
+            cell.imageView.highlightedImage = [UIImage imageNamed:[self.dataSource homeDropdown:self selectedIconForRowInMainTable:indexPath.row]];
+        }
+        
+        NSArray *subData = [self.dataSource homeDropdown:self subDataForRowInMainTable:indexPath.row];
+        
+        if (subData.count) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
         return cell;
     }
     else{
         ZYHomeSubCell *cell = [ZYHomeSubCell subCellWithTableView:tableView];
-        cell.subcategory = self.selectedCategory.subcategories[indexPath.row];
+        
+        NSArray *subData = [self.dataSource homeDropdown:self subDataForRowInMainTable:self.selectedMainRow];
+        
+        cell.textLabel.text = subData[indexPath.row];
+        
         return cell;
     }
 }
@@ -84,10 +108,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.mainTableView) {
-        ZYHomeMainCell *cell = (ZYHomeMainCell *)[tableView cellForRowAtIndexPath:indexPath];
-        self.selectedCategory = cell.category;
+        self.selectedMainRow = (int)indexPath.row;
         [self.subTableview reloadData];
     }
-    
 }
 @end

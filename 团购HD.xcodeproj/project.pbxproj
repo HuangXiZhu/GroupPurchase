@@ -24,6 +24,8 @@
 		09B180651B778DA700FD0F7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B180641B778DA700FD0F7E /* Images.xcassets */; };
 		09B180741B778DA700FD0F7E /* __HDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180731B778DA700FD0F7E /* __HDTests.m */; };
 		09B180911B7792CE00FD0F7E /* ZYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180901B7792CE00FD0F7E /* ZYHomeViewController.m */; };
+		09D368C31B8222D900C08ED4 /* ZYMetaTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D368C21B8222D900C08ED4 /* ZYMetaTool.m */; };
+		09D368C61B8223E900C08ED4 /* ZYSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D368C51B8223E900C08ED4 /* ZYSort.m */; };
 		09FC9C871B7B6E6D002DDBD8 /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C831B7B6E6D002DDBD8 /* categories.plist */; };
 		09FC9C881B7B6E6D002DDBD8 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C841B7B6E6D002DDBD8 /* cities.plist */; };
 		09FC9C891B7B6E6D002DDBD8 /* cityGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C851B7B6E6D002DDBD8 /* cityGroups.plist */; };
@@ -90,6 +92,10 @@
 		09B180731B778DA700FD0F7E /* __HDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __HDTests.m; sourceTree = "<group>"; };
 		09B1808F1B7792CE00FD0F7E /* ZYHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHomeViewController.h; sourceTree = "<group>"; };
 		09B180901B7792CE00FD0F7E /* ZYHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHomeViewController.m; sourceTree = "<group>"; };
+		09D368C11B8222D900C08ED4 /* ZYMetaTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMetaTool.h; sourceTree = "<group>"; };
+		09D368C21B8222D900C08ED4 /* ZYMetaTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMetaTool.m; sourceTree = "<group>"; };
+		09D368C41B8223E900C08ED4 /* ZYSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSort.h; sourceTree = "<group>"; };
+		09D368C51B8223E900C08ED4 /* ZYSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSort.m; sourceTree = "<group>"; };
 		09FC9C831B7B6E6D002DDBD8 /* categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = categories.plist; sourceTree = "<group>"; };
 		09FC9C841B7B6E6D002DDBD8 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		09FC9C851B7B6E6D002DDBD8 /* cityGroups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityGroups.plist; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 		093480EF1B7A1A64000B2875 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				09D368C11B8222D900C08ED4 /* ZYMetaTool.h */,
+				09D368C21B8222D900C08ED4 /* ZYMetaTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -312,6 +320,8 @@
 				09FC9C921B7B70E5002DDBD8 /* ZYCity.m */,
 				09FC9C941B7B71B5002DDBD8 /* ZYRegion.h */,
 				09FC9C951B7B71B5002DDBD8 /* ZYRegion.m */,
+				09D368C41B8223E900C08ED4 /* ZYSort.h */,
+				09D368C51B8223E900C08ED4 /* ZYSort.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -489,7 +499,9 @@
 				09FC9C901B7B6FC2002DDBD8 /* ZYCategory.m in Sources */,
 				09FC9CB01B7B7459002DDBD8 /* ZYHomeMainCell.m in Sources */,
 				09FC9C961B7B71B5002DDBD8 /* ZYRegion.m in Sources */,
+				09D368C31B8222D900C08ED4 /* ZYMetaTool.m in Sources */,
 				09FC9CB71B7B873A002DDBD8 /* ZYDistrictViewController.m in Sources */,
+				09D368C61B8223E900C08ED4 /* ZYSort.m in Sources */,
 				09FC9CBC1B7B8C63002DDBD8 /* ZYCityViewController.m in Sources */,
 				093480F01B7A1A64000B2875 /* ZYNavigationController.m in Sources */,
 				09FC9CB31B7B746F002DDBD8 /* ZYHomeSubCell.m in Sources */,

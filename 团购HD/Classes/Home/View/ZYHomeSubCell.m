@@ -35,11 +35,6 @@
     return self;
 }
 
-- (void)setSubcategory:(NSString *)subcategory
-{
-    _subcategory = subcategory;
-    self.textLabel.text = subcategory;
-}
 
 - (void)awakeFromNib {
     // Initialization code
