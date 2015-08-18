@@ -13,6 +13,7 @@
 #import "MJExtension.h"
 #import "ZYCitySearchResultTableViewController.h"
 #import "UIView+AutoLayout.h"
+#import "ZYConst.h"
 
 @interface ZYCityViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -138,6 +139,7 @@
 {
     [self.searchBar resignFirstResponder];
 }
+
 #pragma mark ----UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -176,6 +178,13 @@
     return [self.cityGroups valueForKeyPath:@"title"];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZYCityGroup *cityGroup = self.cityGroups[indexPath.section];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ZYCityDidChangeNotification object:nil userInfo:@{ZYSelectedCityName : cityGroup.cities[indexPath.row]}];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark ---- click事件
 - (void)clickLeftBarButton
 {
@@ -185,5 +194,11 @@
 
 - (IBAction)clickCoverBtn:(id)sender {
     [self.searchBar resignFirstResponder];
+}
+
+#pragma mark ----deallow
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -12,4 +12,10 @@
 + (instancetype)homeTopItem;
 
 - (void)addTarget:(id)target action:(SEL)action;
+
+- (void)setTitle:(NSString *)title;
+
+- (void)setSubTitle:(NSString *)title;
+
+- (void)setIcon:(NSString *)icon highIcon:(NSString *)highIcon;
 @end

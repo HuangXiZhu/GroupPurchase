@@ -9,7 +9,7 @@
 #import "ZYCitySearchResultTableViewController.h"
 #import "MJExtension.h"
 #import "ZYCity.h"
-
+#import "ZYConst.h"
 @interface ZYCitySearchResultTableViewController ()
 @property (nonatomic, strong) NSArray *cities;
 @property (nonatomic, strong) NSArray *resultCities;
@@ -72,5 +72,20 @@
     ZYCity *city = self.resultCities[indexPath.row];
     cell.textLabel.text = city.name;
     return cell;
+}
+
+#pragma mark ---- UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZYCity *city = self.resultCities[indexPath.row];
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ZYCityDidChangeNotification object:nil userInfo:@{ZYSelectedCityName : city.name}];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

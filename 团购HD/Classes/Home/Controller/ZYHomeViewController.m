@@ -21,7 +21,7 @@
 
 @implementation ZYHomeViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 
 - (instancetype)init
 {
@@ -39,6 +39,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self setupLeftNar];
     
     [self setupRightNar];
+    
+    [self setupNotification];
 }
 
 - (void)setupLeftNar
@@ -73,6 +75,26 @@ static NSString * const reuseIdentifier = @"Cell";
     searchItem.customView.width = 65;
     
     self.navigationItem.rightBarButtonItems = @[mapItem, searchItem];
+}
+
+- (void)setupNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:ZYCityDidChangeNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark ----receiveNotification调用的方法
+
+- (void)cityDidChange:(NSNotification *)notification
+{
+    NSString *cityName = notification.userInfo[ZYSelectedCityName];
+    ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.districtItem.customView;
+    [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - 全部",cityName]];
 }
 
 

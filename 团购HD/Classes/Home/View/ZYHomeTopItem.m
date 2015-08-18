@@ -40,4 +40,21 @@
 {
     [self.iconBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
+
+- (void)setTitle:(NSString *)title
+{
+    self.titleLabel.text = title;
+}
+
+- (void)setSubTitle:(NSString *)title
+{
+    self.subTitleLabel.text = title;
+}
+
+- (void)setIcon:(NSString *)icon highIcon:(NSString *)highIcon
+{
+    [self.iconBtn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
+    [self.iconBtn setImage:[UIImage imageNamed:highIcon] forState:UIControlStateHighlighted];
+}
+
 @end
