@@ -10,5 +10,5 @@
 
 
 @interface ZYDistrictViewController : UIViewController
-
+@property (nonatomic, strong) NSArray *regions;
 @end

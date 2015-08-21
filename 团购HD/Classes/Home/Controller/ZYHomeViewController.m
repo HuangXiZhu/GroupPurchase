@@ -13,10 +13,24 @@
 #import "ZYHomeTopItem.h"
 #import "ZYCategoryViewController.h"
 #import "ZYDistrictViewController.h"
+#import "ZYSort.h"
+#import "ZYCity.h"
+#import "ZYMetaTool.h"
+#import "ZYSortViewController.h"
 @interface ZYHomeViewController ()
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
 @property (nonatomic, weak) UIBarButtonItem *districtItem;
 @property (nonatomic, weak) UIBarButtonItem *sortItem;
+
+/** 当前选中的城市名字 */
+@property (nonatomic, copy) NSString *selectedCityName;
+/** 当前选中的分类名字 */
+@property (nonatomic, copy) NSString *selectedCategoryName;
+/** 当前选中的区域名字 */
+@property (nonatomic, copy) NSString *selectedRegionName;
+/** 当前选中的排序 */
+@property (nonatomic, strong) ZYSort *selectedSort;
+
 @end
 
 @implementation ZYHomeViewController
@@ -43,6 +57,9 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [self setupNotification];
 }
 
+
+#pragma mark ----setup系列
+
 - (void)setupLeftNar
 {
     UIBarButtonItem *logoItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_meituan_logo"] style:UIBarButtonItemStyleDone target:nil action:nil];
@@ -59,7 +76,9 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     self.districtItem = districtItem;
     
     ZYHomeTopItem *sortTopItem = [ZYHomeTopItem homeTopItem];
-    [sortTopItem addTarget:self action:nil];
+    [sortTopItem setTitle:@"排序"];
+    [sortTopItem setIcon:@"icon_sort" highIcon:@"icon_sort_highlighted"];
+    [sortTopItem addTarget:self action:@selector(didClickSortTopItem)];
     UIBarButtonItem *sortItem = [[UIBarButtonItem alloc] initWithCustomView:sortTopItem];
     self.sortItem = sortItem;
     
@@ -80,6 +99,8 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 - (void)setupNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:ZYCityDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sortDidChange:) name:ZYSortDidChangeNotification object:nil];
 }
 
 - (void)dealloc
@@ -93,10 +114,21 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 - (void)cityDidChange:(NSNotification *)notification
 {
     NSString *cityName = notification.userInfo[ZYSelectedCityName];
+    self.selectedCityName = cityName;
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.districtItem.customView;
     [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - 全部",cityName]];
+    [homeTopItem setSubTitle:nil];
 }
 
+- (void)sortDidChange:(NSNotification *)notification
+{
+    self.selectedSort = notification.userInfo[ZYSelectSort];
+    
+    ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.sortItem.customView;
+    [homeTopItem setSubTitle:self.selectedSort.label];
+    
+    
+}
 
 #pragma mark ----clickItem
 - (void)didClickCategoryTopItem
@@ -108,9 +140,21 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 
 - (void)didClickDistrictTopItem
 {
-    UIPopoverController *popVc = [[UIPopoverController alloc] initWithContentViewController:[[ZYDistrictViewController alloc] init]];
-    
+    ZYDistrictViewController *districtTopItem = [[ZYDistrictViewController alloc] init];
+    UIPopoverController *popVc = [[UIPopoverController alloc] initWithContentViewController:districtTopItem];
+    if (self.selectedCityName) {
+        ZYCity *city = [[[ZYMetaTool cities] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name = %@",self.selectedCityName]] lastObject];
+        districtTopItem.regions = city.regions;
+    }
     [popVc presentPopoverFromBarButtonItem:self.districtItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (void)didClickSortTopItem
+{
+    ZYSortViewController *sortVc = [[ZYSortViewController alloc] init];
+    UIPopoverController *sortPopVc = [[UIPopoverController alloc] initWithContentViewController:sortVc];
+    
+    [sortPopVc presentPopoverFromBarButtonItem:self.sortItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 #pragma mark <UICollectionViewDataSource>
 

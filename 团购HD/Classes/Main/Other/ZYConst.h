@@ -12,3 +12,14 @@
 
 extern NSString *const ZYCityDidChangeNotification;
 extern NSString *const ZYSelectedCityName;
+
+extern NSString *const ZYSortDidChangeNotification;
+extern NSString *const ZYSelectSort;
+
+extern NSString *const ZYCategoryDidChangeNotification;
+extern NSString *const ZYSelectCategory;
+extern NSString *const ZYSelectSubcategoryName;
+
+extern NSString *const ZYRegionDidChangeNotification;
+extern NSString *const ZYSelectRegion;
+extern NSString *const ZYSelectSubregionName;

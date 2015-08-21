@@ -42,6 +42,11 @@
 - (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown selectedIconForRowInMainTable:(NSUInteger)row;
 @end
 
+@protocol ZYHomeDropdownDelegate <NSObject>
+
+
+
+@end
 
 @interface ZYHomeDropdown : UIView
 @property (nonatomic, weak) id<ZYHomeDropdownDataSource>dataSource;

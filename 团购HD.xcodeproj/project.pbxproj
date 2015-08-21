@@ -17,6 +17,7 @@
 		093481011B7A31A9000B2875 /* ZYHomeDropdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 093481001B7A31A9000B2875 /* ZYHomeDropdown.m */; };
 		093481031B7A31BA000B2875 /* ZYHomeDropdown.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093481021B7A31BA000B2875 /* ZYHomeDropdown.xib */; };
 		093481061B7A4A05000B2875 /* ZYCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093481051B7A4A05000B2875 /* ZYCategoryViewController.m */; };
+		097270F11B860AD8007E2012 /* ZYSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 097270F01B860AD8007E2012 /* ZYSortViewController.m */; };
 		09A8C2A91B80DAA3002B8112 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A8C2A81B80DAA3002B8112 /* UIView+AutoLayout.m */; };
 		09A8C2B21B80E31E002B8112 /* ZYCitySearchResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A8C2B11B80E31E002B8112 /* ZYCitySearchResultTableViewController.m */; };
 		09B180571B778DA700FD0F7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180561B778DA700FD0F7E /* main.m */; };
@@ -78,6 +79,8 @@
 		093481021B7A31BA000B2875 /* ZYHomeDropdown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZYHomeDropdown.xib; sourceTree = "<group>"; };
 		093481041B7A4A05000B2875 /* ZYCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCategoryViewController.h; sourceTree = "<group>"; };
 		093481051B7A4A05000B2875 /* ZYCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCategoryViewController.m; sourceTree = "<group>"; };
+		097270EF1B860AD8007E2012 /* ZYSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSortViewController.h; sourceTree = "<group>"; };
+		097270F01B860AD8007E2012 /* ZYSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSortViewController.m; sourceTree = "<group>"; };
 		09A8C2A71B80DAA3002B8112 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		09A8C2A81B80DAA3002B8112 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		09A8C2B01B80E31E002B8112 /* ZYCitySearchResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCitySearchResultTableViewController.h; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 				09FC9CB41B7B873A002DDBD8 /* ZYDistrictViewController.h */,
 				09FC9CB51B7B873A002DDBD8 /* ZYDistrictViewController.m */,
 				09FC9CB61B7B873A002DDBD8 /* ZYDistrictViewController.xib */,
+				097270EF1B860AD8007E2012 /* ZYSortViewController.h */,
+				097270F01B860AD8007E2012 /* ZYSortViewController.m */,
 				09FC9CB91B7B8C63002DDBD8 /* ZYCityViewController.h */,
 				09FC9CBA1B7B8C63002DDBD8 /* ZYCityViewController.m */,
 				09FC9CBB1B7B8C63002DDBD8 /* ZYCityViewController.xib */,
@@ -492,6 +497,7 @@
 				09FC9CAB1B7B71FA002DDBD8 /* NSObject+MJCoding.m in Sources */,
 				09B1805D1B778DA700FD0F7E /* __HD.xcdatamodeld in Sources */,
 				093481061B7A4A05000B2875 /* ZYCategoryViewController.m in Sources */,
+				097270F11B860AD8007E2012 /* ZYSortViewController.m in Sources */,
 				09B180571B778DA700FD0F7E /* main.m in Sources */,
 				09FC9C8D1B7B6F63002DDBD8 /* ZYCityGroup.m in Sources */,
 				093481011B7A31A9000B2875 /* ZYHomeDropdown.m in Sources */,

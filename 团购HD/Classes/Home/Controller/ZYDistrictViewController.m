@@ -13,6 +13,8 @@
 #import "ZYConst.h"
 #import "ZYMetaTool.h"
 #import "UIView+Extension.h"
+#import "ZYRegion.h"
+
 @interface ZYDistrictViewController () <ZYHomeDropdownDataSource>
 
 - (IBAction)changeCity:(id)sender;
@@ -24,7 +26,7 @@
     [super viewDidLoad];
     
     ZYHomeDropdown *dropdown = [ZYHomeDropdown homeDropdown];
-//    dropdown.dataSource = self;
+    dropdown.dataSource = self;
     UIView *title = [self.view.subviews firstObject];
     dropdown.y = title.height;
     [self.view addSubview:dropdown];
@@ -48,27 +50,18 @@
 #pragma mark ----ZYHomeDropdownDataSource
 - (NSUInteger)numberOfRowsInMainTable:(ZYHomeDropdown *)homeDropdown
 {
-    return [ZYMetaTool categories].count;
+    return self.regions.count;
 }
 
 - (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown titleForRowInMainTable:(NSUInteger)row
 {
-    return [[ZYMetaTool categories][row] name];
+    return [self.regions[row] name];
 }
 
-//- (NSArray *)homeDropdown:(ZYHomeDropdown *)homeDropdown subDataForRowInMainTable:(NSUInteger)row
-//{
-//    return [[ZYMetaTool categories][row] subcategories];
-//}
-//
-//- (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown normalIconForRowInMainTable:(NSUInteger)row
-//{
-//    return [[ZYMetaTool categories][row] small_icon];
-//}
-//
-//- (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown selectedIconForRowInMainTable:(NSUInteger)row
-//{
-//    return [[ZYMetaTool categories][row] small_highlighted_icon];
-//}
+- (NSArray *)homeDropdown:(ZYHomeDropdown *)homeDropdown subDataForRowInMainTable:(NSUInteger)row
+{
+    return [self.regions[row] subregions];
+}
+
 
 @end
