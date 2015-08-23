@@ -12,7 +12,8 @@
 #import "ZYCategory.h"
 #import "MJExtension.h"
 #import "ZYMetaTool.h"
-@interface ZYCategoryViewController () <ZYHomeDropdownDataSource>
+#import "ZYConst.h"
+@interface ZYCategoryViewController () <ZYHomeDropdownDataSource, ZYHomeDropdownDelegate>
 
 @end
 
@@ -24,6 +25,7 @@
     
     ZYHomeDropdown *dropdown = [ZYHomeDropdown homeDropdown];
     dropdown.dataSource = self;
+    dropdown.delegate = self;
     [self.view addSubview:dropdown];
     
     // 设置控制器view在popover中的尺寸
@@ -54,5 +56,22 @@
 - (NSString *)homeDropdown:(ZYHomeDropdown *)homeDropdown selectedIconForRowInMainTable:(NSUInteger)row
 {
     return [[ZYMetaTool categories][row] small_highlighted_icon];
+}
+
+#pragma mark ----ZYHomeDropdownDelegate
+- (void)homeDropdown:(ZYHomeDropdown *)homeDropdown didSelectedRowInMainTable:(int)row
+{
+    ZYCategory *category = [ZYMetaTool categories][row];
+    if (category.subcategories.count == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:ZYCategoryDidChangeNotification object:nil userInfo:@{ZYSelectCategory : category}];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)homeDropdown:(ZYHomeDropdown *)homeDropdown didSelectedRowInSubTable:(int)subRow mainRow:(int)mainRow
+{
+    ZYCategory *category = [ZYMetaTool categories][mainRow];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ZYCategoryDidChangeNotification object:nil userInfo:@{ZYSelectCategory : category, ZYSelectSubcategoryName : category.subcategories[subRow]}];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

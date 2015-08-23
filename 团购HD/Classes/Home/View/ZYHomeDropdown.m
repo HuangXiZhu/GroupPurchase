@@ -110,6 +110,15 @@
     if (tableView == self.mainTableView) {
         self.selectedMainRow = (int)indexPath.row;
         [self.subTableview reloadData];
+        
+        if ([self.delegate respondsToSelector:@selector(homeDropdown:didSelectedRowInMainTable:)]) {
+            [self.delegate homeDropdown:self didSelectedRowInMainTable:(int)indexPath.row];
+        }
+    }
+    else{
+        if ([self.delegate respondsToSelector:@selector(homeDropdown:didSelectedRowInSubTable:mainRow:)]) {
+            [self.delegate homeDropdown:self didSelectedRowInSubTable:(int)indexPath.row mainRow:self.selectedMainRow];
+        }
     }
 }
 @end

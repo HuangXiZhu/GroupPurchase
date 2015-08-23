@@ -17,6 +17,8 @@
 #import "ZYCity.h"
 #import "ZYMetaTool.h"
 #import "ZYSortViewController.h"
+#import "ZYRegion.h"
+#import "ZYCategory.h"
 @interface ZYHomeViewController ()
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
 @property (nonatomic, weak) UIBarButtonItem *districtItem;
@@ -101,6 +103,10 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:ZYCityDidChangeNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sortDidChange:) name:ZYSortDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(regionDidChange:) name:ZYRegionDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(caregoryDidChange:) name:ZYCategoryDidChangeNotification object:nil];
 }
 
 - (void)dealloc
@@ -130,6 +136,46 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     
 }
 
+- (void)regionDidChange:(NSNotification *)notification
+{
+    ZYRegion *region = notification.userInfo[ZYSelectRegion];
+    NSString *subReginName = notification.userInfo[ZYSelectSubregionName];
+    
+    if (subReginName == nil || [region.name isEqualToString:@"全部"]) {
+        self.selectedRegionName = subReginName;
+    }
+    else{
+        self.selectedRegionName = subReginName;
+    }
+    
+    if ([subReginName isEqualToString:@"全部"]) {
+        self.selectedRegionName = nil;
+    }
+    
+    ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.districtItem.customView;
+    [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - %@", self.selectedCityName, region.name]];
+    [homeTopItem setSubTitle:subReginName];
+}
+
+- (void)caregoryDidChange:(NSNotification *)notification
+{
+    ZYCategory *category = notification.userInfo[ZYSelectCategory];
+    NSString *subcategoryName = notification.userInfo[ZYSelectSubcategoryName];
+    
+    if (subcategoryName == nil || [subcategoryName isEqualToString:@"全部"]) { // 点击的数据没有子分类
+        self.selectedCategoryName = category.name;
+    } else {
+        self.selectedCategoryName = subcategoryName;
+    }
+    if ([self.selectedCategoryName isEqualToString:@"全部分类"]) {
+        self.selectedCategoryName = nil;
+    }
+    
+    ZYHomeTopItem *topItem = (ZYHomeTopItem *)self.categoryItem.customView;
+    [topItem setIcon:category.icon highIcon:category.highlighted_icon];
+    [topItem setTitle:category.name];
+    [topItem setSubTitle:subcategoryName];
+}
 #pragma mark ----clickItem
 - (void)didClickCategoryTopItem
 {

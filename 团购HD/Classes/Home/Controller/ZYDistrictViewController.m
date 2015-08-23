@@ -15,7 +15,7 @@
 #import "UIView+Extension.h"
 #import "ZYRegion.h"
 
-@interface ZYDistrictViewController () <ZYHomeDropdownDataSource>
+@interface ZYDistrictViewController () <ZYHomeDropdownDataSource, ZYHomeDropdownDelegate>
 
 - (IBAction)changeCity:(id)sender;
 @end
@@ -27,6 +27,7 @@
     
     ZYHomeDropdown *dropdown = [ZYHomeDropdown homeDropdown];
     dropdown.dataSource = self;
+    dropdown.delegate = self;
     UIView *title = [self.view.subviews firstObject];
     dropdown.y = title.height;
     [self.view addSubview:dropdown];
@@ -63,5 +64,21 @@
     return [self.regions[row] subregions];
 }
 
+#pragma mark ----ZYHomeDropdownDelegate
+- (void)homeDropdown:(ZYHomeDropdown *)homeDropdown didSelectedRowInMainTable:(int)row
+{
+    ZYRegion *region = self.regions[row];
+    if (region.subregions == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:ZYRegionDidChangeNotification object:nil userInfo:@{ZYSelectCategory : region}];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
 
+- (void)homeDropdown:(ZYHomeDropdown *)homeDropdown didSelectedRowInSubTable:(int)subRow mainRow:(int)mainRow
+{
+    ZYRegion *region = self.regions[mainRow];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ZYRegionDidChangeNotification object:nil userInfo:@{ZYSelectRegion : region, ZYSelectSubregionName : region.subregions[subRow]}];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

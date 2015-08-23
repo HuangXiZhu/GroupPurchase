@@ -43,13 +43,14 @@
 @end
 
 @protocol ZYHomeDropdownDelegate <NSObject>
+- (void)homeDropdown:(ZYHomeDropdown *)homeDropdown didSelectedRowInMainTable:(int)row;
 
-
-
+- (void)homeDropdown:(ZYHomeDropdown *)homeDropdown didSelectedRowInSubTable:(int)subRow mainRow:(int)mainRow;
 @end
 
 @interface ZYHomeDropdown : UIView
 @property (nonatomic, weak) id<ZYHomeDropdownDataSource>dataSource;
+@property (nonatomic, weak) id<ZYHomeDropdownDelegate>delegate;
 
 + (instancetype)homeDropdown;
 @end
