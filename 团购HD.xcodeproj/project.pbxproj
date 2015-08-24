@@ -27,6 +27,8 @@
 		09B180911B7792CE00FD0F7E /* ZYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180901B7792CE00FD0F7E /* ZYHomeViewController.m */; };
 		09D368C31B8222D900C08ED4 /* ZYMetaTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D368C21B8222D900C08ED4 /* ZYMetaTool.m */; };
 		09D368C61B8223E900C08ED4 /* ZYSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D368C51B8223E900C08ED4 /* ZYSort.m */; };
+		09F38D891B89AC0C00661209 /* DPAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F38D851B89AC0C00661209 /* DPAPI.m */; };
+		09F38D8A1B89AC0C00661209 /* DPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F38D881B89AC0C00661209 /* DPRequest.m */; };
 		09FC9C871B7B6E6D002DDBD8 /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C831B7B6E6D002DDBD8 /* categories.plist */; };
 		09FC9C881B7B6E6D002DDBD8 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C841B7B6E6D002DDBD8 /* cities.plist */; };
 		09FC9C891B7B6E6D002DDBD8 /* cityGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C851B7B6E6D002DDBD8 /* cityGroups.plist */; };
@@ -99,6 +101,11 @@
 		09D368C21B8222D900C08ED4 /* ZYMetaTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMetaTool.m; sourceTree = "<group>"; };
 		09D368C41B8223E900C08ED4 /* ZYSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSort.h; sourceTree = "<group>"; };
 		09D368C51B8223E900C08ED4 /* ZYSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSort.m; sourceTree = "<group>"; };
+		09F38D841B89AC0C00661209 /* DPAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPAPI.h; sourceTree = "<group>"; };
+		09F38D851B89AC0C00661209 /* DPAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPAPI.m; sourceTree = "<group>"; };
+		09F38D861B89AC0C00661209 /* DPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPConstants.h; sourceTree = "<group>"; };
+		09F38D871B89AC0C00661209 /* DPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRequest.h; sourceTree = "<group>"; };
+		09F38D881B89AC0C00661209 /* DPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRequest.m; sourceTree = "<group>"; };
 		09FC9C831B7B6E6D002DDBD8 /* categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = categories.plist; sourceTree = "<group>"; };
 		09FC9C841B7B6E6D002DDBD8 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		09FC9C851B7B6E6D002DDBD8 /* cityGroups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityGroups.plist; sourceTree = "<group>"; };
@@ -180,6 +187,7 @@
 		093480E71B7A1A64000B2875 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				09F38D831B89AC0C00661209 /* dianpingapi */,
 				09FC9C971B7B71FA002DDBD8 /* MJExtension */,
 			);
 			path = Lib;
@@ -348,6 +356,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		09F38D831B89AC0C00661209 /* dianpingapi */ = {
+			isa = PBXGroup;
+			children = (
+				09F38D841B89AC0C00661209 /* DPAPI.h */,
+				09F38D851B89AC0C00661209 /* DPAPI.m */,
+				09F38D861B89AC0C00661209 /* DPConstants.h */,
+				09F38D871B89AC0C00661209 /* DPRequest.h */,
+				09F38D881B89AC0C00661209 /* DPRequest.m */,
+			);
+			path = dianpingapi;
+			sourceTree = "<group>";
+		};
 		09FC9C821B7B6E6D002DDBD8 /* Plist */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09FC9CA91B7B71FA002DDBD8 /* MJIvar.m in Sources */,
+				09F38D8A1B89AC0C00661209 /* DPRequest.m in Sources */,
 				093480F21B7A1A64000B2875 /* UIView+Extension.m in Sources */,
 				093480F71B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.m in Sources */,
 				09FC9CA71B7B71FA002DDBD8 /* MJConst.m in Sources */,
@@ -504,6 +525,7 @@
 				09FC9C931B7B70E5002DDBD8 /* ZYCity.m in Sources */,
 				09FC9C901B7B6FC2002DDBD8 /* ZYCategory.m in Sources */,
 				09FC9CB01B7B7459002DDBD8 /* ZYHomeMainCell.m in Sources */,
+				09F38D891B89AC0C00661209 /* DPAPI.m in Sources */,
 				09FC9C961B7B71B5002DDBD8 /* ZYRegion.m in Sources */,
 				09D368C31B8222D900C08ED4 /* ZYMetaTool.m in Sources */,
 				09FC9CB71B7B873A002DDBD8 /* ZYDistrictViewController.m in Sources */,

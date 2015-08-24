@@ -19,7 +19,9 @@
 #import "ZYSortViewController.h"
 #import "ZYRegion.h"
 #import "ZYCategory.h"
-@interface ZYHomeViewController ()
+#import "DPAPI.h"
+
+@interface ZYHomeViewController () <DPRequestDelegate>
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
 @property (nonatomic, weak) UIBarButtonItem *districtItem;
 @property (nonatomic, weak) UIBarButtonItem *sortItem;
@@ -124,6 +126,8 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.districtItem.customView;
     [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - 全部",cityName]];
     [homeTopItem setSubTitle:nil];
+    
+    [self loadNewDeals];
 }
 
 - (void)sortDidChange:(NSNotification *)notification
@@ -133,7 +137,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.sortItem.customView;
     [homeTopItem setSubTitle:self.selectedSort.label];
     
-    
+    [self loadNewDeals];
 }
 
 - (void)regionDidChange:(NSNotification *)notification
@@ -155,6 +159,8 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.districtItem.customView;
     [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - %@", self.selectedCityName, region.name]];
     [homeTopItem setSubTitle:subReginName];
+    
+    [self loadNewDeals];
 }
 
 - (void)caregoryDidChange:(NSNotification *)notification
@@ -175,7 +181,46 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [topItem setIcon:category.icon highIcon:category.highlighted_icon];
     [topItem setTitle:category.name];
     [topItem setSubTitle:subcategoryName];
+    
+    [self loadNewDeals];
 }
+
+#pragma mark ----与服务器进行交互
+- (void)loadNewDeals
+{
+    DPAPI *api = [[DPAPI alloc] init];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    // 城市
+    params[@"city"] = self.selectedCityName;
+    // 每页的条数
+    params[@"limit"] = @10;
+    // 分类(类别)
+    if (self.selectedCategoryName) {
+        params[@"category"] = self.selectedCategoryName;
+    }
+    // 区域
+    if (self.selectedRegionName) {
+        params[@"region"] = self.selectedRegionName;
+    }
+    // 排序
+    if (self.selectedSort) {
+        params[@"sort"] = @(self.selectedSort.value);
+    }
+    [api requestWithURL:@"v1/deal/find_deals" params:params delegate:self];
+    
+    NSLog(@"请求参数:%@", params);
+}
+
+- (void)request:(DPRequest *)request didFinishLoadingWithResult:(id)result
+{
+    NSLog(@"请求成功--%@", result);
+}
+
+- (void)request:(DPRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"请求失败--%@", error);
+}
+
 #pragma mark ----clickItem
 - (void)didClickCategoryTopItem
 {
@@ -202,6 +247,9 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     
     [sortPopVc presentPopoverFromBarButtonItem:self.sortItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
+
+
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
