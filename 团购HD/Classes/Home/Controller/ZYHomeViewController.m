@@ -20,6 +20,10 @@
 #import "ZYRegion.h"
 #import "ZYCategory.h"
 #import "DPAPI.h"
+#import "ZYDeal.h"
+#import "MJExtension.h"
+#import "ZYDealCell.h"
+#import "MJRefresh.h"
 
 @interface ZYHomeViewController () <DPRequestDelegate>
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
@@ -35,24 +39,57 @@
 /** 当前选中的排序 */
 @property (nonatomic, strong) ZYSort *selectedSort;
 
+
+@property (nonatomic, strong) NSMutableArray *deals;
+
+@property (nonatomic, strong) DPRequest *lastRequest;
+
+@property (nonatomic, assign) int currentPage;
+
 @end
 
 @implementation ZYHomeViewController
 
 static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 
+- (NSMutableArray *)deals
+{
+    if (!_deals) {
+        _deals = [NSMutableArray array];
+    }
+    return _deals;
+}
+
+
 - (instancetype)init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    
+    //设置cell的大小
+    layout.itemSize = CGSizeMake(305, 305);
     return [self initWithCollectionViewLayout:layout];
 }
+
+///**
+// 当屏幕旋转,控制器view的尺寸发生改变调用
+// */
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    // 根据屏幕宽度决定列数
+    int cols = (size.width == 1024) ? 3 : 2;
+    // 根据列数计算内边距
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
+    CGFloat inset = (size.width - cols * layout.itemSize.width) / (cols + 1);
+    layout.sectionInset = UIEdgeInsetsMake(inset, inset, inset, inset);
+    // 设置每一行之间的间距
+    layout.minimumLineSpacing = inset;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    self.collectionView.backgroundColor = ZYGlobalBg;
+    [self setupCollection];
     
     [self setupLeftNar];
     
@@ -63,6 +100,16 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 
 
 #pragma mark ----setup系列
+
+- (void)setupCollection
+{
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ZYDealCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+    
+    self.collectionView.backgroundColor = ZYGlobalBg;
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(heaerRefresh)];
+    self.collectionView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+}
 
 - (void)setupLeftNar
 {
@@ -127,7 +174,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - 全部",cityName]];
     [homeTopItem setSubTitle:nil];
     
-    [self loadNewDeals];
+    [self loadDeals];
 }
 
 - (void)sortDidChange:(NSNotification *)notification
@@ -137,7 +184,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.sortItem.customView;
     [homeTopItem setSubTitle:self.selectedSort.label];
     
-    [self loadNewDeals];
+    [self loadDeals];
 }
 
 - (void)regionDidChange:(NSNotification *)notification
@@ -160,7 +207,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - %@", self.selectedCityName, region.name]];
     [homeTopItem setSubTitle:subReginName];
     
-    [self loadNewDeals];
+    [self loadDeals];
 }
 
 - (void)caregoryDidChange:(NSNotification *)notification
@@ -182,7 +229,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [topItem setTitle:category.name];
     [topItem setSubTitle:subcategoryName];
     
-    [self loadNewDeals];
+    [self loadDeals];
 }
 
 #pragma mark ----与服务器进行交互
@@ -190,6 +237,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 {
     DPAPI *api = [[DPAPI alloc] init];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"page"] = @(self.currentPage);
     // 城市
     params[@"city"] = self.selectedCityName;
     // 每页的条数
@@ -206,14 +254,42 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     if (self.selectedSort) {
         params[@"sort"] = @(self.selectedSort.value);
     }
-    [api requestWithURL:@"v1/deal/find_deals" params:params delegate:self];
     
-    NSLog(@"请求参数:%@", params);
+    self.lastRequest = [api requestWithURL:@"v1/deal/find_deals" params:params delegate:self];
+    
+//    NSLog(@"请求参数:%@", params);
+}
+
+- (void)loadDeals
+{
+    self.currentPage = 1;
+    [self loadNewDeals];
+}
+
+- (void)loadMoreDeals
+{
+    self.currentPage++;
+    [self loadNewDeals];
 }
 
 - (void)request:(DPRequest *)request didFinishLoadingWithResult:(id)result
 {
-    NSLog(@"请求成功--%@", result);
+    if (request != self.lastRequest) {  //如果不是同一个请求，是短时间内发了两次请求，那么只要最近的一次请求
+        return;
+    }
+    NSLog(@"%@",result);
+    int total_count = [result[@"total_count"] intValue];
+    
+    NSArray *newDeals = [ZYDeal objectArrayWithKeyValuesArray:result[@"deals"]];
+    if (self.currentPage == 1) {
+        [self.deals removeAllObjects];
+    }
+    
+    [self.deals addObjectsFromArray:newDeals];
+    
+    [self.collectionView reloadData];
+    
+    [self.collectionView.footer endRefreshing];
 }
 
 - (void)request:(DPRequest *)request didFailWithError:(NSError *)error
@@ -248,26 +324,34 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [sortPopVc presentPopoverFromBarButtonItem:self.sortItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
+#pragma mark ----刷新方法
 
+- (void)heaerRefresh
+{
+    [self.collectionView.header endRefreshing];
+}
 
+- (void)footerRefresh
+{
+    [self loadMoreDeals];
+}
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
-    return 0;
+    
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 0;
+    [self viewWillTransitionToSize:CGSizeMake(self.collectionView.width, self.collectionView.height) withTransitionCoordinator:nil];
+    self.collectionView.footer.hidden = (self.deals.count == 0);
+    return self.deals.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    
+    ZYDealCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.deal = self.deals[indexPath.row];
     return cell;
 }
 
