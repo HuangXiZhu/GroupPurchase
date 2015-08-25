@@ -19,13 +19,15 @@
 #import "ZYSortViewController.h"
 #import "ZYRegion.h"
 #import "ZYCategory.h"
-#import "DPAPI.h"
 #import "ZYDeal.h"
 #import "MJExtension.h"
 #import "ZYDealCell.h"
 #import "MJRefresh.h"
+#import "MBProgressHUD+MJ.h"
+#import "UIView+AutoLayout.h"
+#import "ZYSearchViewController.h"
 
-@interface ZYHomeViewController () <DPRequestDelegate>
+@interface ZYHomeViewController ()
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
 @property (nonatomic, weak) UIBarButtonItem *districtItem;
 @property (nonatomic, weak) UIBarButtonItem *sortItem;
@@ -39,57 +41,14 @@
 /** 当前选中的排序 */
 @property (nonatomic, strong) ZYSort *selectedSort;
 
-
-@property (nonatomic, strong) NSMutableArray *deals;
-
-@property (nonatomic, strong) DPRequest *lastRequest;
-
-@property (nonatomic, assign) int currentPage;
-
 @end
 
 @implementation ZYHomeViewController
 
-static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
-
-- (NSMutableArray *)deals
-{
-    if (!_deals) {
-        _deals = [NSMutableArray array];
-    }
-    return _deals;
-}
-
-
-- (instancetype)init
-{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    
-    //设置cell的大小
-    layout.itemSize = CGSizeMake(305, 305);
-    return [self initWithCollectionViewLayout:layout];
-}
-
-///**
-// 当屏幕旋转,控制器view的尺寸发生改变调用
-// */
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    // 根据屏幕宽度决定列数
-    int cols = (size.width == 1024) ? 3 : 2;
-    // 根据列数计算内边距
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
-    CGFloat inset = (size.width - cols * layout.itemSize.width) / (cols + 1);
-    layout.sectionInset = UIEdgeInsetsMake(inset, inset, inset, inset);
-    // 设置每一行之间的间距
-    layout.minimumLineSpacing = inset;
-}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setupCollection];
     
     [self setupLeftNar];
     
@@ -101,15 +60,6 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 
 #pragma mark ----setup系列
 
-- (void)setupCollection
-{
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ZYDealCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    self.collectionView.backgroundColor = ZYGlobalBg;
-    self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(heaerRefresh)];
-    self.collectionView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-}
 
 - (void)setupLeftNar
 {
@@ -138,10 +88,10 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
 
 - (void)setupRightNar
 {
-    UIBarButtonItem *mapItem = [UIBarButtonItem barButtonItemWithTarget:nil action:nil normalImage:@"icon_map" highImage:@"icon_map_highlighted"];
+    UIBarButtonItem *mapItem = [UIBarButtonItem barButtonItemWithTarget:self action:@selector(didClickMapTopItem) normalImage:@"icon_map" highImage:@"icon_map_highlighted"];
     mapItem.customView.width = 65;
     
-    UIBarButtonItem *searchItem = [UIBarButtonItem barButtonItemWithTarget:nil action:nil normalImage:@"icon_search" highImage:@"icon_search_highlighted"];
+    UIBarButtonItem *searchItem = [UIBarButtonItem barButtonItemWithTarget:self action:@selector(didClickSearchTopItem) normalImage:@"icon_search" highImage:@"icon_search_highlighted"];
     searchItem.customView.width = 65;
     
     self.navigationItem.rightBarButtonItems = @[mapItem, searchItem];
@@ -174,7 +124,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - 全部",cityName]];
     [homeTopItem setSubTitle:nil];
     
-    [self loadDeals];
+    [self.collectionView.header beginRefreshing];
 }
 
 - (void)sortDidChange:(NSNotification *)notification
@@ -184,7 +134,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.sortItem.customView;
     [homeTopItem setSubTitle:self.selectedSort.label];
     
-    [self loadDeals];
+    [self.collectionView.header beginRefreshing];
 }
 
 - (void)regionDidChange:(NSNotification *)notification
@@ -207,7 +157,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - %@", self.selectedCityName, region.name]];
     [homeTopItem setSubTitle:subReginName];
     
-    [self loadDeals];
+    [self.collectionView.header beginRefreshing];
 }
 
 - (void)caregoryDidChange:(NSNotification *)notification
@@ -229,19 +179,14 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [topItem setTitle:category.name];
     [topItem setSubTitle:subcategoryName];
     
-    [self loadDeals];
+    [self.collectionView.header beginRefreshing];
 }
 
 #pragma mark ----与服务器进行交互
-- (void)loadNewDeals
+- (void)setParams:(NSMutableDictionary *)params
 {
-    DPAPI *api = [[DPAPI alloc] init];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"page"] = @(self.currentPage);
     // 城市
     params[@"city"] = self.selectedCityName;
-    // 每页的条数
-    params[@"limit"] = @10;
     // 分类(类别)
     if (self.selectedCategoryName) {
         params[@"category"] = self.selectedCategoryName;
@@ -254,48 +199,8 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     if (self.selectedSort) {
         params[@"sort"] = @(self.selectedSort.value);
     }
-    
-    self.lastRequest = [api requestWithURL:@"v1/deal/find_deals" params:params delegate:self];
-    
-//    NSLog(@"请求参数:%@", params);
 }
 
-- (void)loadDeals
-{
-    self.currentPage = 1;
-    [self loadNewDeals];
-}
-
-- (void)loadMoreDeals
-{
-    self.currentPage++;
-    [self loadNewDeals];
-}
-
-- (void)request:(DPRequest *)request didFinishLoadingWithResult:(id)result
-{
-    if (request != self.lastRequest) {  //如果不是同一个请求，是短时间内发了两次请求，那么只要最近的一次请求
-        return;
-    }
-    NSLog(@"%@",result);
-    int total_count = [result[@"total_count"] intValue];
-    
-    NSArray *newDeals = [ZYDeal objectArrayWithKeyValuesArray:result[@"deals"]];
-    if (self.currentPage == 1) {
-        [self.deals removeAllObjects];
-    }
-    
-    [self.deals addObjectsFromArray:newDeals];
-    
-    [self.collectionView reloadData];
-    
-    [self.collectionView.footer endRefreshing];
-}
-
-- (void)request:(DPRequest *)request didFailWithError:(NSError *)error
-{
-    NSLog(@"请求失败--%@", error);
-}
 
 #pragma mark ----clickItem
 - (void)didClickCategoryTopItem
@@ -303,6 +208,7 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     UIPopoverController *popVc = [[UIPopoverController alloc] initWithContentViewController:[[ZYCategoryViewController alloc] init]];
     
     [popVc presentPopoverFromBarButtonItem:self.categoryItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
 }
 
 - (void)didClickDistrictTopItem
@@ -324,66 +230,15 @@ static NSString * const reuseIdentifier = @"ZYHomeViewControllerCell";
     [sortPopVc presentPopoverFromBarButtonItem:self.sortItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
-#pragma mark ----刷新方法
-
-- (void)heaerRefresh
+- (void)didClickMapTopItem
 {
-    [self.collectionView.header endRefreshing];
+    NSLog(@"-----didClickMapTopItem");
 }
 
-- (void)footerRefresh
+- (void)didClickSearchTopItem
 {
-    [self loadMoreDeals];
-}
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    ZYSearchViewController *vc = [[ZYSearchViewController alloc] init];
     
-    return 1;
+    [self.navigationController pushViewController:vc animated:YES];
 }
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    [self viewWillTransitionToSize:CGSizeMake(self.collectionView.width, self.collectionView.height) withTransitionCoordinator:nil];
-    self.collectionView.footer.hidden = (self.deals.count == 0);
-    return self.deals.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ZYDealCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.deal = self.deals[indexPath.row];
-    return cell;
-}
-
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
 @end

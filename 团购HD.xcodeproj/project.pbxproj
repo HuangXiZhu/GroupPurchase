@@ -17,6 +17,11 @@
 		093481011B7A31A9000B2875 /* ZYHomeDropdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 093481001B7A31A9000B2875 /* ZYHomeDropdown.m */; };
 		093481031B7A31BA000B2875 /* ZYHomeDropdown.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093481021B7A31BA000B2875 /* ZYHomeDropdown.xib */; };
 		093481061B7A4A05000B2875 /* ZYCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093481051B7A4A05000B2875 /* ZYCategoryViewController.m */; };
+		096A28571B8C17A400B66AC5 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 096A28531B8C17A400B66AC5 /* MBProgressHUD+MJ.m */; };
+		096A28581B8C17A400B66AC5 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 096A28541B8C17A400B66AC5 /* MBProgressHUD.bundle */; };
+		096A28591B8C17A400B66AC5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 096A28561B8C17A400B66AC5 /* MBProgressHUD.m */; };
+		096A285C1B8C3DBB00B66AC5 /* ZYDealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096A285B1B8C3DBB00B66AC5 /* ZYDealViewController.m */; };
+		096A28611B8C487400B66AC5 /* ZYSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096A28601B8C487400B66AC5 /* ZYSearchViewController.m */; };
 		097270F11B860AD8007E2012 /* ZYSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 097270F01B860AD8007E2012 /* ZYSortViewController.m */; };
 		09937F211B8AF53600597929 /* ZYDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 09937F201B8AF53600597929 /* ZYDeal.m */; };
 		09937F251B8AF81400597929 /* ZYDealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09937F231B8AF81400597929 /* ZYDealCell.m */; };
@@ -120,6 +125,15 @@
 		093481021B7A31BA000B2875 /* ZYHomeDropdown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZYHomeDropdown.xib; sourceTree = "<group>"; };
 		093481041B7A4A05000B2875 /* ZYCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCategoryViewController.h; sourceTree = "<group>"; };
 		093481051B7A4A05000B2875 /* ZYCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCategoryViewController.m; sourceTree = "<group>"; };
+		096A28521B8C17A400B66AC5 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		096A28531B8C17A400B66AC5 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		096A28541B8C17A400B66AC5 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		096A28551B8C17A400B66AC5 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		096A28561B8C17A400B66AC5 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		096A285A1B8C3DBB00B66AC5 /* ZYDealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYDealViewController.h; sourceTree = "<group>"; };
+		096A285B1B8C3DBB00B66AC5 /* ZYDealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYDealViewController.m; sourceTree = "<group>"; };
+		096A285F1B8C487400B66AC5 /* ZYSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSearchViewController.h; sourceTree = "<group>"; };
+		096A28601B8C487400B66AC5 /* ZYSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSearchViewController.m; sourceTree = "<group>"; };
 		097270EF1B860AD8007E2012 /* ZYSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSortViewController.h; sourceTree = "<group>"; };
 		097270F01B860AD8007E2012 /* ZYSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSortViewController.m; sourceTree = "<group>"; };
 		09937F1F1B8AF53600597929 /* ZYDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYDeal.h; sourceTree = "<group>"; };
@@ -297,6 +311,8 @@
 			children = (
 				093480E51B7A1A64000B2875 /* ZYNavigationController.h */,
 				093480E61B7A1A64000B2875 /* ZYNavigationController.m */,
+				096A285A1B8C3DBB00B66AC5 /* ZYDealViewController.h */,
+				096A285B1B8C3DBB00B66AC5 /* ZYDealViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -334,9 +350,39 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		096A28511B8C17A400B66AC5 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				096A28521B8C17A400B66AC5 /* MBProgressHUD+MJ.h */,
+				096A28531B8C17A400B66AC5 /* MBProgressHUD+MJ.m */,
+				096A28541B8C17A400B66AC5 /* MBProgressHUD.bundle */,
+				096A28551B8C17A400B66AC5 /* MBProgressHUD.h */,
+				096A28561B8C17A400B66AC5 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		096A285D1B8C481500B66AC5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				096A285E1B8C481500B66AC5 /* Controller */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		096A285E1B8C481500B66AC5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				096A285F1B8C487400B66AC5 /* ZYSearchViewController.h */,
+				096A28601B8C487400B66AC5 /* ZYSearchViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		09937F731B8B138300597929 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				096A28511B8C17A400B66AC5 /* MBProgressHUD */,
 				09937F741B8B138300597929 /* dianpingapi */,
 				09937F7A1B8B138300597929 /* MJExtension */,
 				09937F8A1B8B138300597929 /* MJRefresh */,
@@ -572,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				093480E31B7A1A64000B2875 /* Main */,
+				096A285D1B8C481500B66AC5 /* Search */,
 				09B1808B1B77926C00FD0F7E /* Home */,
 			);
 			path = Classes;
@@ -746,6 +793,7 @@
 				09FC9C8A1B7B6E6D002DDBD8 /* sorts.plist in Resources */,
 				093481031B7A31BA000B2875 /* ZYHomeDropdown.xib in Resources */,
 				09FC9C881B7B6E6D002DDBD8 /* cities.plist in Resources */,
+				096A28581B8C17A400B66AC5 /* MBProgressHUD.bundle in Resources */,
 				09FC9CB81B7B873A002DDBD8 /* ZYDistrictViewController.xib in Resources */,
 				09FC9CBD1B7B8C63002DDBD8 /* ZYCityViewController.xib in Resources */,
 				09937FF01B8B138300597929 /* MJRefresh.bundle in Resources */,
@@ -784,12 +832,14 @@
 				09937FE41B8B138300597929 /* MJRefreshComponent.m in Sources */,
 				09937FE51B8B138300597929 /* MJRefreshFooter.m in Sources */,
 				09937FFF1B8B138300597929 /* UIImage+GIF.m in Sources */,
+				096A28611B8C487400B66AC5 /* ZYSearchViewController.m in Sources */,
 				093481061B7A4A05000B2875 /* ZYCategoryViewController.m in Sources */,
 				097270F11B860AD8007E2012 /* ZYSortViewController.m in Sources */,
 				09937FEA1B8B138300597929 /* MJRefreshBackGifFooter.m in Sources */,
 				09B180571B778DA700FD0F7E /* main.m in Sources */,
 				09937FF91B8B138300597929 /* SDWebImageDecoder.m in Sources */,
 				09937FEB1B8B138300597929 /* MJRefreshBackNormalFooter.m in Sources */,
+				096A285C1B8C3DBB00B66AC5 /* ZYDealViewController.m in Sources */,
 				09FC9C8D1B7B6F63002DDBD8 /* ZYCityGroup.m in Sources */,
 				09937FF61B8B138300597929 /* NSData+ImageContentType.m in Sources */,
 				09937FDA1B8B138300597929 /* DPRequest.m in Sources */,
@@ -800,12 +850,14 @@
 				09937FF51B8B138300597929 /* MKAnnotationView+WebCache.m in Sources */,
 				09937F5B1B8B079E00597929 /* ZYCenterLineLabel.m in Sources */,
 				09937FDD1B8B138300597929 /* MJIvar.m in Sources */,
+				096A28591B8C17A400B66AC5 /* MBProgressHUD.m in Sources */,
 				09937FEE1B8B138300597929 /* MJRefreshNormalHeader.m in Sources */,
 				09FC9C931B7B70E5002DDBD8 /* ZYCity.m in Sources */,
 				09FC9C901B7B6FC2002DDBD8 /* ZYCategory.m in Sources */,
 				099380021B8B138300597929 /* UIImageView+HighlightedWebCache.m in Sources */,
 				09FC9CB01B7B7459002DDBD8 /* ZYHomeMainCell.m in Sources */,
 				09937FFC1B8B138300597929 /* SDWebImageManager.m in Sources */,
+				096A28571B8C17A400B66AC5 /* MBProgressHUD+MJ.m in Sources */,
 				09937FDE1B8B138300597929 /* MJType.m in Sources */,
 				09937FDC1B8B138300597929 /* MJFoundation.m in Sources */,
 				09937FFD1B8B138300597929 /* SDWebImagePrefetcher.m in Sources */,

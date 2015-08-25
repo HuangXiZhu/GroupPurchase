@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZYDealViewController.h"
 
-@interface ZYHomeViewController : UICollectionViewController
+@interface ZYHomeViewController : ZYDealViewController
 
 @end
