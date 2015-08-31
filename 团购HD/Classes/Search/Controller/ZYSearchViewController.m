@@ -44,7 +44,7 @@
 
 - (void)setParams:(NSMutableDictionary *)params
 {
-    params[@"city"] = @"北京";
+    params[@"city"] = self.cityName;
     params[@"keyword"] = self.searchBar.text;
 }
 

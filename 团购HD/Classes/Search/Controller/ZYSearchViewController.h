@@ -9,5 +9,5 @@
 #import "ZYDealViewController.h"
 
 @interface ZYSearchViewController : ZYDealViewController
-
+@property (nonatomic, copy) NSString *cityName;
 @end

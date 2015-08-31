@@ -26,8 +26,9 @@
 #import "MBProgressHUD+MJ.h"
 #import "UIView+AutoLayout.h"
 #import "ZYSearchViewController.h"
+#import "AwesomeMenu.h"
 
-@interface ZYHomeViewController ()
+@interface ZYHomeViewController () <AwesomeMenuDelegate>
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
 @property (nonatomic, weak) UIBarButtonItem *districtItem;
 @property (nonatomic, weak) UIBarButtonItem *sortItem;
@@ -53,6 +54,8 @@
     [self setupLeftNar];
     
     [self setupRightNar];
+    
+    [self setupAwesomeMenu];
     
     [self setupNotification];
 }
@@ -95,6 +98,36 @@
     searchItem.customView.width = 65;
     
     self.navigationItem.rightBarButtonItems = @[mapItem, searchItem];
+}
+
+- (void)setupAwesomeMenu
+{
+    //initWithImage放背景图片，normal和highlighted状态下的背景图片
+    //contentImage放具体要显示的图片
+    AwesomeMenuItem *midItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"icon_pathMenu_background_highlighted"] highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_mainMine_normal"] highlightedContentImage:nil];
+    
+    AwesomeMenuItem *firstItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg_pathMenu_black_normal"] highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_collect_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_collect_highlighted"]];
+    AwesomeMenuItem *secoendItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg_pathMenu_black_normal"] highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_scan_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_scan_highlighted"]];
+    AwesomeMenuItem *thirdItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg_pathMenu_black_normal"] highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_more_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_more_highlighted"]];
+    AwesomeMenuItem *fourthItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg_pathMenu_black_normal"] highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_collect_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_collect_highlighted"]];
+    
+    NSArray *items = @[firstItem, secoendItem, thirdItem, fourthItem];
+    AwesomeMenu *awesome = [[AwesomeMenu alloc] initWithFrame:CGRectZero startItem:midItem optionMenus:items];
+    //开始点
+    awesome.startPoint = CGPointMake(50, 150);
+    //设置显示区域（也就是角度）
+    awesome.menuWholeAngle = M_PI_2;
+    
+    awesome.delegate = self;
+    //让中间按钮不旋转
+    awesome.rotateAddButton = NO;
+    awesome.alpha = 0.5;
+    [self.view addSubview:awesome];
+    
+    [awesome autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [awesome autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
+    
+    [awesome autoSetDimensionsToSize:CGSizeMake(200, 200)];
 }
 
 - (void)setupNotification
@@ -237,8 +270,32 @@
 
 - (void)didClickSearchTopItem
 {
-    ZYSearchViewController *vc = [[ZYSearchViewController alloc] init];
+    if (self.selectedCityName) {
+        ZYSearchViewController *vc = [[ZYSearchViewController alloc] init];
+        vc.cityName = self.selectedCityName;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
+        [MBProgressHUD showError:@"请您选择城市后再搜索..." toView:self.view];
+    }
+}
+
+#pragma mark---- AwesomeMenuDelegate
+- (void)awesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx
+{
     
-    [self.navigationController pushViewController:vc animated:YES];
+    [self awesomeMenuWillAnimateClose:menu];
+}
+
+- (void)awesomeMenuWillAnimateOpen:(AwesomeMenu *)menu
+{
+    menu.contentImage = [UIImage imageNamed:@"icon_pathMenu_cross_normal"];
+    menu.alpha = 1.0;
+}
+
+- (void)awesomeMenuWillAnimateClose:(AwesomeMenu *)menu
+{
+    menu.contentImage = [UIImage imageNamed:@"icon_pathMenu_mainMine_normal"];
+    menu.alpha = 0.5;
 }
 @end
