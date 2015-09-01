@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class ZYCategory;
 @interface ZYHomeMainCell : UITableViewCell
 
 + (instancetype)mainCellWithTableView:(UITableView *)tableView;

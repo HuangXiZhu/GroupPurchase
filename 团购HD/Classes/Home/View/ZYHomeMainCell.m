@@ -7,7 +7,6 @@
 //
 
 #import "ZYHomeMainCell.h"
-#import "ZYCategory.h"
 
 #define Identifie @"HomeMainCell"
 

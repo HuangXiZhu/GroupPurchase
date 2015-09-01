@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZYDeal;
 
 @interface ZYDetailViewController : UIViewController
-
+@property (nonatomic, strong) ZYDeal *deal;
 @end

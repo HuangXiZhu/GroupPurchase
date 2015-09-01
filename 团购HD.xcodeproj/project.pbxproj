@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		093249051B942987007A1E7B /* ZYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093249031B942987007A1E7B /* ZYDetailViewController.m */; };
 		093249061B942987007A1E7B /* ZYDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093249041B942987007A1E7B /* ZYDetailViewController.xib */; };
+		093249091B943F2F007A1E7B /* ZYRestrictions.m in Sources */ = {isa = PBXBuildFile; fileRef = 093249081B943F2F007A1E7B /* ZYRestrictions.m */; };
 		093480F01B7A1A64000B2875 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480E61B7A1A64000B2875 /* ZYNavigationController.m */; };
 		093480F11B7A1A64000B2875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480EA1B7A1A64000B2875 /* AppDelegate.m */; };
 		093480F21B7A1A64000B2875 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 093480EC1B7A1A64000B2875 /* UIView+Extension.m */; };
@@ -114,6 +115,8 @@
 		093249021B942987007A1E7B /* ZYDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYDetailViewController.h; sourceTree = "<group>"; };
 		093249031B942987007A1E7B /* ZYDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYDetailViewController.m; sourceTree = "<group>"; };
 		093249041B942987007A1E7B /* ZYDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZYDetailViewController.xib; sourceTree = "<group>"; };
+		093249071B943F2F007A1E7B /* ZYRestrictions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRestrictions.h; sourceTree = "<group>"; };
+		093249081B943F2F007A1E7B /* ZYRestrictions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRestrictions.m; sourceTree = "<group>"; };
 		093480E51B7A1A64000B2875 /* ZYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavigationController.h; sourceTree = "<group>"; };
 		093480E61B7A1A64000B2875 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
 		093480E91B7A1A64000B2875 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -712,6 +715,8 @@
 				09D368C51B8223E900C08ED4 /* ZYSort.m */,
 				09937F1F1B8AF53600597929 /* ZYDeal.h */,
 				09937F201B8AF53600597929 /* ZYDeal.m */,
+				093249071B943F2F007A1E7B /* ZYRestrictions.h */,
+				093249081B943F2F007A1E7B /* ZYRestrictions.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -915,6 +920,7 @@
 				09FC9CB71B7B873A002DDBD8 /* ZYDistrictViewController.m in Sources */,
 				099380011B8B138300597929 /* UIImage+WebP.m in Sources */,
 				09D368C61B8223E900C08ED4 /* ZYSort.m in Sources */,
+				093249091B943F2F007A1E7B /* ZYRestrictions.m in Sources */,
 				09FC9CBC1B7B8C63002DDBD8 /* ZYCityViewController.m in Sources */,
 				09937FEC1B8B138300597929 /* MJRefreshBackStateFooter.m in Sources */,
 				09937FF11B8B138300597929 /* MJRefreshConst.m in Sources */,
