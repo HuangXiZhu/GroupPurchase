@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0903F1041B958DB600F38A53 /* ZYDealTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903F1031B958DB600F38A53 /* ZYDealTool.m */; };
+		0903F1111B958DE100F38A53 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903F1071B958DE100F38A53 /* FMDatabase.m */; };
+		0903F1121B958DE100F38A53 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903F1091B958DE100F38A53 /* FMDatabaseAdditions.m */; };
+		0903F1131B958DE100F38A53 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903F10B1B958DE100F38A53 /* FMDatabasePool.m */; };
+		0903F1141B958DE100F38A53 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903F10D1B958DE100F38A53 /* FMDatabaseQueue.m */; };
+		0903F1151B958DE100F38A53 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903F1101B958DE100F38A53 /* FMResultSet.m */; };
+		0903F1171B958E0A00F38A53 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0903F1161B958E0A00F38A53 /* libsqlite3.dylib */; };
 		093249051B942987007A1E7B /* ZYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093249031B942987007A1E7B /* ZYDetailViewController.m */; };
 		093249061B942987007A1E7B /* ZYDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 093249041B942987007A1E7B /* ZYDetailViewController.xib */; };
 		093249091B943F2F007A1E7B /* ZYRestrictions.m in Sources */ = {isa = PBXBuildFile; fileRef = 093249081B943F2F007A1E7B /* ZYRestrictions.m */; };
@@ -112,6 +119,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0903F1021B958DB600F38A53 /* ZYDealTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYDealTool.h; sourceTree = "<group>"; };
+		0903F1031B958DB600F38A53 /* ZYDealTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYDealTool.m; sourceTree = "<group>"; };
+		0903F1061B958DE100F38A53 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		0903F1071B958DE100F38A53 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		0903F1081B958DE100F38A53 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		0903F1091B958DE100F38A53 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		0903F10A1B958DE100F38A53 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		0903F10B1B958DE100F38A53 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		0903F10C1B958DE100F38A53 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		0903F10D1B958DE100F38A53 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		0903F10E1B958DE100F38A53 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		0903F10F1B958DE100F38A53 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		0903F1101B958DE100F38A53 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		0903F1161B958E0A00F38A53 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		093249021B942987007A1E7B /* ZYDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYDetailViewController.h; sourceTree = "<group>"; };
 		093249031B942987007A1E7B /* ZYDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYDetailViewController.m; sourceTree = "<group>"; };
 		093249041B942987007A1E7B /* ZYDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZYDetailViewController.xib; sourceTree = "<group>"; };
@@ -295,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0903F1171B958E0A00F38A53 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +330,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0903F1051B958DE100F38A53 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				0903F1061B958DE100F38A53 /* FMDatabase.h */,
+				0903F1071B958DE100F38A53 /* FMDatabase.m */,
+				0903F1081B958DE100F38A53 /* FMDatabaseAdditions.h */,
+				0903F1091B958DE100F38A53 /* FMDatabaseAdditions.m */,
+				0903F10A1B958DE100F38A53 /* FMDatabasePool.h */,
+				0903F10B1B958DE100F38A53 /* FMDatabasePool.m */,
+				0903F10C1B958DE100F38A53 /* FMDatabaseQueue.h */,
+				0903F10D1B958DE100F38A53 /* FMDatabaseQueue.m */,
+				0903F10E1B958DE100F38A53 /* FMDB.h */,
+				0903F10F1B958DE100F38A53 /* FMResultSet.h */,
+				0903F1101B958DE100F38A53 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 		093248FB1B9428E8007A1E7B /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +407,8 @@
 			children = (
 				09D368C11B8222D900C08ED4 /* ZYMetaTool.h */,
 				09D368C21B8222D900C08ED4 /* ZYMetaTool.m */,
+				0903F1021B958DB600F38A53 /* ZYDealTool.h */,
+				0903F1031B958DB600F38A53 /* ZYDealTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -425,6 +467,7 @@
 		09937F731B8B138300597929 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				0903F1051B958DE100F38A53 /* fmdb */,
 				093517751B8D6EEE00781FE2 /* AwesomeMenu */,
 				096A28511B8C17A400B66AC5 /* MBProgressHUD */,
 				09937F741B8B138300597929 /* dianpingapi */,
@@ -605,6 +648,7 @@
 		09B180481B778DA700FD0F7E = {
 			isa = PBXGroup;
 			children = (
+				0903F1161B958E0A00F38A53 /* libsqlite3.dylib */,
 				09B180531B778DA700FD0F7E /* 团购HD */,
 				09B180701B778DA700FD0F7E /* 团购HDTests */,
 				09B180521B778DA700FD0F7E /* Products */,
@@ -888,12 +932,14 @@
 				097270F11B860AD8007E2012 /* ZYSortViewController.m in Sources */,
 				09937FEA1B8B138300597929 /* MJRefreshBackGifFooter.m in Sources */,
 				09B180571B778DA700FD0F7E /* main.m in Sources */,
+				0903F1121B958DE100F38A53 /* FMDatabaseAdditions.m in Sources */,
 				09937FF91B8B138300597929 /* SDWebImageDecoder.m in Sources */,
 				09937FEB1B8B138300597929 /* MJRefreshBackNormalFooter.m in Sources */,
 				096A285C1B8C3DBB00B66AC5 /* ZYDealViewController.m in Sources */,
 				09FC9C8D1B7B6F63002DDBD8 /* ZYCityGroup.m in Sources */,
 				09937FF61B8B138300597929 /* NSData+ImageContentType.m in Sources */,
 				09937FDA1B8B138300597929 /* DPRequest.m in Sources */,
+				0903F1151B958DE100F38A53 /* FMResultSet.m in Sources */,
 				09937FE21B8B138300597929 /* MJRefreshAutoFooter.m in Sources */,
 				09937FE31B8B138300597929 /* MJRefreshBackFooter.m in Sources */,
 				09937FE61B8B138300597929 /* MJRefreshHeader.m in Sources */,
@@ -928,12 +974,16 @@
 				099380041B8B138300597929 /* UIView+WebCacheOperation.m in Sources */,
 				09937FF31B8B138300597929 /* UIScrollView+MJRefresh.m in Sources */,
 				09937FF21B8B138300597929 /* UIScrollView+MJExtension.m in Sources */,
+				0903F1111B958DE100F38A53 /* FMDatabase.m in Sources */,
 				093480F01B7A1A64000B2875 /* ZYNavigationController.m in Sources */,
+				0903F1141B958DE100F38A53 /* FMDatabaseQueue.m in Sources */,
 				09937FD91B8B138300597929 /* DPAPI.m in Sources */,
 				09FC9CB31B7B746F002DDBD8 /* ZYHomeSubCell.m in Sources */,
 				09937FE81B8B138300597929 /* MJRefreshAutoNormalFooter.m in Sources */,
 				09B180911B7792CE00FD0F7E /* ZYHomeViewController.m in Sources */,
 				09937F211B8AF53600597929 /* ZYDeal.m in Sources */,
+				0903F1131B958DE100F38A53 /* FMDatabasePool.m in Sources */,
+				0903F1041B958DB600F38A53 /* ZYDealTool.m in Sources */,
 				093480F31B7A1A64000B2875 /* ZYConst.m in Sources */,
 				09937FF81B8B138300597929 /* SDWebImageCompat.m in Sources */,
 				09937FF41B8B138300597929 /* UIView+MJExtension.m in Sources */,
