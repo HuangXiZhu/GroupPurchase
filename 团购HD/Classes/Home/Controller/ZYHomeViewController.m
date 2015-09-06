@@ -27,6 +27,7 @@
 #import "UIView+AutoLayout.h"
 #import "ZYSearchViewController.h"
 #import "AwesomeMenu.h"
+#import "ZYCollectViewController.h"
 
 @interface ZYHomeViewController () <AwesomeMenuDelegate>
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
@@ -285,6 +286,11 @@
 {
     
     [self awesomeMenuWillAnimateClose:menu];
+    
+    if (idx == 0) {
+        ZYCollectViewController *vc = [[ZYCollectViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)awesomeMenuWillAnimateOpen:(AwesomeMenu *)menu

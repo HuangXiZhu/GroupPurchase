@@ -1,61 +1,41 @@
 //
-//  ZYDealViewController.m
+//  ZYCollectViewController.m
 //  团购HD
 //
-//  Created by 王志盼 on 15/8/25.
+//  Created by 王志盼 on 15/9/2.
 //  Copyright (c) 2015年 王志盼. All rights reserved.
 //
 
-#import "ZYDealViewController.h"
-#import "ZYHomeViewController.h"
-#import "ZYConst.h"
-#import "UIBarButtonItem+ZYExtension.h"
-#import "UIView+Extension.h"
-#import "ZYHomeTopItem.h"
-#import "ZYCategoryViewController.h"
-#import "ZYDistrictViewController.h"
-#import "ZYSort.h"
-#import "ZYCity.h"
-#import "ZYMetaTool.h"
-#import "ZYSortViewController.h"
-#import "ZYRegion.h"
-#import "ZYCategory.h"
-#import "DPAPI.h"
+#import "ZYCollectViewController.h"
 #import "ZYDeal.h"
-#import "MJExtension.h"
-#import "ZYDealCell.h"
-#import "MJRefresh.h"
-#import "MBProgressHUD+MJ.h"
 #import "UIView+AutoLayout.h"
+#import "ZYConst.h"
+#import "MJRefresh.h"
+#import "UIView+Extension.h"
+#import "ZYDealCell.h"
 #import "ZYDetailViewController.h"
+#import "ZYDealTool.h"
 
-@interface ZYDealViewController () <DPRequestDelegate>
-
-@property (nonatomic, strong) NSMutableArray *deals;
-
-@property (nonatomic, strong) DPRequest *lastRequest;
-
-@property (nonatomic, assign) int currentPage;
-
-@property (nonatomic, assign) int totalCount;
-
+@interface ZYCollectViewController ()
 /** 当没有团购数据时，显示一张没有数据的背景 */
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
+@property (nonatomic, strong) NSMutableArray *deals;
+
+@property (nonatomic, assign) int currentPage;
 @end
 
-@implementation ZYDealViewController
+@implementation ZYCollectViewController
 
-static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
+static NSString * const reuseIdentifier = @"ZYCollectViewControllerCell";
 
 - (UIImageView *)backgroundImageView
 {
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc] init];
-        _backgroundImageView.image = [UIImage imageNamed:@"icon_deals_empty"];
+        _backgroundImageView.image = [UIImage imageNamed:@"icon_collects_empty"];
         [self.view addSubview:_backgroundImageView];
         [_backgroundImageView autoCenterInSuperview];
-        
     }
     return _backgroundImageView;
 }
@@ -98,8 +78,8 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     
     [self setupCollection];
     
+    [self setupNotification];
 }
-
 
 #pragma mark ----setup系列
 
@@ -109,86 +89,48 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     
     self.collectionView.backgroundColor = ZYGlobalBg;
     self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(heaerRefresh)];
     self.collectionView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
 }
 
-#pragma mark ----与服务器进行交互
-- (void)loadNewDeals
+- (void)setupNotification
 {
-    DPAPI *api = [[DPAPI alloc] init];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //让子类自行设置响应的参数
-    [self setParams:params];
-    params[@"page"] = @(self.currentPage);
-    // 每页的条数
-    params[@"limit"] = @10;
-    self.lastRequest = [api requestWithURL:@"v1/deal/find_deals" params:params delegate:self];
-    
-    //    NSLog(@"请求参数:%@", params);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectStateDidChange:) name:ZYCollectStateDidChangeNotification object:nil];
 }
 
-- (void)loadDeals
+- (void)dealloc
 {
-    self.currentPage = 1;
-    [self loadNewDeals];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark ----与数据库进行交互
 - (void)loadMoreDeals
 {
     self.currentPage++;
-    [self loadNewDeals];
-}
-
-- (void)request:(DPRequest *)request didFinishLoadingWithResult:(id)result
-{
-    if (request != self.lastRequest) {  //如果不是同一个请求，是短时间内发了两次请求，那么只要最近的一次请求
-        return;
-    }
-    self.totalCount = [result[@"total_count"] intValue];
     
-    NSArray *newDeals = [ZYDeal objectArrayWithKeyValuesArray:result[@"deals"]];
-    if (self.currentPage == 1) {
-        [self.deals removeAllObjects];
-    }
-    
-    [self.deals addObjectsFromArray:newDeals];
+    [self.deals addObjectsFromArray:[ZYDealTool collectDeals:self.currentPage]];
     
     [self.collectionView reloadData];
     
     [self.collectionView.footer endRefreshing];
-    [self.collectionView.header endRefreshing];
-}
-
-- (void)request:(DPRequest *)request didFailWithError:(NSError *)error
-{
-    if (self.lastRequest != request) {
-        return;
-    }
-    //在ipad开发中，如果要显示HUD，特别需要注意，显示到self.view上
-    //    [MBProgressHUD showError:@"加载失败，请检查您的网络..."];
-    
-    [MBProgressHUD showError:@"加载失败，请检查您的网络..." toView:self.view];
-    
-    
-    [self.collectionView.footer endRefreshing];
-    
-    //当不是请求第一页的时候，如果请求失败，那么应当减去这次请求的
-    self.currentPage--;
 }
 
 
 #pragma mark ----刷新方法
-
-- (void)heaerRefresh
-{
-    [self loadDeals];
-}
-
 - (void)footerRefresh
 {
     [self loadMoreDeals];
 }
+
+
+#pragma mark ----notification系列
+- (void)collectStateDidChange:(NSNotification *)note
+{
+    [self.deals removeAllObjects];
+    self.currentPage = 0;
+    [self loadMoreDeals];
+}
+
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -200,6 +142,7 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //需要在请求发送就设置以此cell的布局
     [self viewWillTransitionToSize:CGSizeMake(self.collectionView.width, self.collectionView.height) withTransitionCoordinator:nil];
+    
     self.backgroundImageView.hidden = (self.deals.count != 0);
     return self.deals.count;
 }
@@ -208,8 +151,7 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     ZYDealCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.deal = self.deals[indexPath.row];
     
-    //第一次进入界面，self.totalCount会被初始化为0
-    self.collectionView.footer.hidden = (self.totalCount == self.deals.count);
+    self.collectionView.footer.hidden = (self.deals.count == [ZYDealTool collectDealsCount]);
     return cell;
 }
 
@@ -221,5 +163,7 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     detailVc.deal = self.deals[indexPath.row];
     [self presentViewController:detailVc animated:YES completion:nil];
 }
+
+
 
 @end

@@ -83,6 +83,7 @@
 		099380021B8B138300597929 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 09937FD41B8B138300597929 /* UIImageView+HighlightedWebCache.m */; };
 		099380031B8B138300597929 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 09937FD61B8B138300597929 /* UIImageView+WebCache.m */; };
 		099380041B8B138300597929 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 09937FD81B8B138300597929 /* UIView+WebCacheOperation.m */; };
+		099C316D1B96C8E80022BB50 /* ZYCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 099C316C1B96C8E80022BB50 /* ZYCollectViewController.m */; };
 		09A8C2A91B80DAA3002B8112 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A8C2A81B80DAA3002B8112 /* UIView+AutoLayout.m */; };
 		09A8C2B21B80E31E002B8112 /* ZYCitySearchResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A8C2B11B80E31E002B8112 /* ZYCitySearchResultTableViewController.m */; };
 		09B180571B778DA700FD0F7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180561B778DA700FD0F7E /* main.m */; };
@@ -269,6 +270,8 @@
 		09937FD61B8B138300597929 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		09937FD71B8B138300597929 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		09937FD81B8B138300597929 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		099C316B1B96C8E80022BB50 /* ZYCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCollectViewController.h; sourceTree = "<group>"; };
+		099C316C1B96C8E80022BB50 /* ZYCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCollectViewController.m; sourceTree = "<group>"; };
 		09A8C2A71B80DAA3002B8112 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		09A8C2A81B80DAA3002B8112 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		09A8C2B01B80E31E002B8112 /* ZYCitySearchResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCitySearchResultTableViewController.h; sourceTree = "<group>"; };
@@ -645,6 +648,23 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		099C31691B96C8D00022BB50 /* Collect */ = {
+			isa = PBXGroup;
+			children = (
+				099C316A1B96C8D00022BB50 /* Controller */,
+			);
+			path = Collect;
+			sourceTree = "<group>";
+		};
+		099C316A1B96C8D00022BB50 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				099C316B1B96C8E80022BB50 /* ZYCollectViewController.h */,
+				099C316C1B96C8E80022BB50 /* ZYCollectViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		09B180481B778DA700FD0F7E = {
 			isa = PBXGroup;
 			children = (
@@ -709,6 +729,7 @@
 				09B1808B1B77926C00FD0F7E /* Home */,
 				096A285D1B8C481500B66AC5 /* Search */,
 				093248FB1B9428E8007A1E7B /* Detail */,
+				099C31691B96C8D00022BB50 /* Collect */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -927,6 +948,7 @@
 				09937FE41B8B138300597929 /* MJRefreshComponent.m in Sources */,
 				09937FE51B8B138300597929 /* MJRefreshFooter.m in Sources */,
 				09937FFF1B8B138300597929 /* UIImage+GIF.m in Sources */,
+				099C316D1B96C8E80022BB50 /* ZYCollectViewController.m in Sources */,
 				096A28611B8C487400B66AC5 /* ZYSearchViewController.m in Sources */,
 				093481061B7A4A05000B2875 /* ZYCategoryViewController.m in Sources */,
 				097270F11B860AD8007E2012 /* ZYSortViewController.m in Sources */,

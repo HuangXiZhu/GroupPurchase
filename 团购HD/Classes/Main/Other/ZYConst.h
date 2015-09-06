@@ -23,3 +23,7 @@ extern NSString *const ZYSelectSubcategoryName;
 extern NSString *const ZYRegionDidChangeNotification;
 extern NSString *const ZYSelectRegion;
 extern NSString *const ZYSelectSubregionName;
+
+extern NSString *const ZYCollectStateDidChangeNotification;
+extern NSString *const ZYIsCollectKey;
+extern NSString *const ZYCollectDealKey;

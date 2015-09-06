@@ -14,6 +14,10 @@
 #import "ZYRestrictions.h"
 #import "MBProgressHUD+MJ.h"
 #import "UIImageView+WebCache.h"
+#import "ZYDealCell.h"
+#import "MBProgressHUD+MJ.h"
+#import "ZYDealTool.h"
+
 @interface ZYDetailViewController () <UIWebViewDelegate, DPRequestDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 - (IBAction)back;
@@ -104,12 +108,28 @@
 
 - (IBAction)buy {
     
+    
 }
 
 - (IBAction)collect {
     
     self.collectButton.selected = !self.collectButton.isSelected;
-
+    
+    NSMutableDictionary *info = [NSMutableDictionary dictionary];
+    
+    if (self.collectButton.selected) {
+        info[ZYIsCollectKey] = @(YES);
+        [ZYDealTool addCollectionDeal:self.deal];
+        [MBProgressHUD showSuccess:@"收藏成功..." toView:self.view];
+    }
+    else{
+        info[ZYIsCollectKey] = @(NO);
+        [ZYDealTool removeCollectionDeal:self.deal];
+        [MBProgressHUD showSuccess:@"取消收藏成功..." toView:self.view];
+    }
+    info[ZYCollectDealKey] = self.deal;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ZYCollectStateDidChangeNotification object:nil userInfo:info];
 }
 
 - (IBAction)share {

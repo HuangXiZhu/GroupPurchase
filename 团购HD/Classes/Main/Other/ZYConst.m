@@ -14,3 +14,7 @@ NSString *const ZYSelectSubcategoryName = @"ZYSelectSubcategoryName";
 NSString *const ZYRegionDidChangeNotification = @"ZYRegionDidChangeNotification";
 NSString *const ZYSelectRegion = @"ZYSelectRegion";
 NSString *const ZYSelectSubregionName = @"ZYSelectSubregionName";
+
+NSString *const ZYCollectStateDidChangeNotification = @"ZYCollectStateDidChangeNotification";
+NSString *const ZYIsCollectKey = @"ZYIsCollectKey";
+NSString *const ZYCollectDealKey = @"ZYCollectDealKey";
