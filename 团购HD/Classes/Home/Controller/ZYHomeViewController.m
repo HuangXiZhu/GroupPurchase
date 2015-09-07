@@ -28,6 +28,7 @@
 #import "ZYSearchViewController.h"
 #import "AwesomeMenu.h"
 #import "ZYCollectViewController.h"
+#import "ZYBrowseViewController.h"
 
 @interface ZYHomeViewController () <AwesomeMenuDelegate>
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
@@ -289,6 +290,11 @@
     
     if (idx == 0) {
         ZYCollectViewController *vc = [[ZYCollectViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (idx == 1) {
+        ZYBrowseViewController *vc = [[ZYBrowseViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

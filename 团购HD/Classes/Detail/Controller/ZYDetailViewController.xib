@@ -121,7 +121,6 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" backgroundImage="icon_collect_highlighted"/>
-                                            <state key="highlighted" backgroundImage="icon_collect_highlighted"/>
                                             <connections>
                                                 <action selector="collect" destination="-1" eventType="touchUpInside" id="8Ew-qJ-NbJ"/>
                                             </connections>

@@ -59,11 +59,15 @@
         [self.leftTimeButton setTitle:[NSString stringWithFormat:@"%d天%d小时%d分钟", cmps.day, cmps.hour, cmps.minute] forState:UIControlStateNormal];
     }
     
+    self.collectButton.selected = [ZYDealTool isCollected:self.deal];
+    
     DPAPI *api = [[DPAPI alloc] init];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"deal_id"] = self.deal.deal_id;
     [api requestWithURL:@"v1/deal/get_single_deal" params:params delegate:self];
     
+    
+    [self saveBrowse];
 }
 
 /**
@@ -120,12 +124,12 @@
     if (self.collectButton.selected) {
         info[ZYIsCollectKey] = @(YES);
         [ZYDealTool addCollectionDeal:self.deal];
-        [MBProgressHUD showSuccess:@"收藏成功..." toView:self.view];
+        [MBProgressHUD showSuccess:@"收藏成功" toView:self.view];
     }
     else{
         info[ZYIsCollectKey] = @(NO);
         [ZYDealTool removeCollectionDeal:self.deal];
-        [MBProgressHUD showSuccess:@"取消收藏成功..." toView:self.view];
+        [MBProgressHUD showSuccess:@"取消收藏成功" toView:self.view];
     }
     info[ZYCollectDealKey] = self.deal;
     
@@ -136,4 +140,12 @@
     
 }
 
+
+- (void)saveBrowse
+{
+    if ([ZYDealTool isBrowsed:self.deal]) {
+        [ZYDealTool removeBrowseDeal:self.deal];
+    }
+    [ZYDealTool addBrowseDeal:self.deal];
+}
 @end

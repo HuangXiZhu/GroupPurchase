@@ -18,4 +18,13 @@
 + (int)collectDealsCount;
 
 + (BOOL)isCollected:(ZYDeal *)deal;
+
+
++ (void)addBrowseDeal:(ZYDeal *)deal;
++ (void)removeBrowseDeal:(ZYDeal *)deal;
+
++ (NSArray *)browseDeals:(int)page;
++ (int)browseDealsCount;
+
++ (BOOL)isBrowsed:(ZYDeal *)deal;
 @end

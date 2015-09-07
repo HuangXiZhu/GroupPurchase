@@ -93,6 +93,8 @@
 		09B180911B7792CE00FD0F7E /* ZYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B180901B7792CE00FD0F7E /* ZYHomeViewController.m */; };
 		09D368C31B8222D900C08ED4 /* ZYMetaTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D368C21B8222D900C08ED4 /* ZYMetaTool.m */; };
 		09D368C61B8223E900C08ED4 /* ZYSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D368C51B8223E900C08ED4 /* ZYSort.m */; };
+		09D3EACC1B9C2B8A000FE23B /* ZYOldDealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D3EACB1B9C2B8A000FE23B /* ZYOldDealViewController.m */; };
+		09D3EAD11B9C39D3000FE23B /* ZYBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D3EAD01B9C39D3000FE23B /* ZYBrowseViewController.m */; };
 		09FC9C871B7B6E6D002DDBD8 /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C831B7B6E6D002DDBD8 /* categories.plist */; };
 		09FC9C881B7B6E6D002DDBD8 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C841B7B6E6D002DDBD8 /* cities.plist */; };
 		09FC9C891B7B6E6D002DDBD8 /* cityGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09FC9C851B7B6E6D002DDBD8 /* cityGroups.plist */; };
@@ -290,6 +292,10 @@
 		09D368C21B8222D900C08ED4 /* ZYMetaTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMetaTool.m; sourceTree = "<group>"; };
 		09D368C41B8223E900C08ED4 /* ZYSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSort.h; sourceTree = "<group>"; };
 		09D368C51B8223E900C08ED4 /* ZYSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSort.m; sourceTree = "<group>"; };
+		09D3EACA1B9C2B8A000FE23B /* ZYOldDealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYOldDealViewController.h; sourceTree = "<group>"; };
+		09D3EACB1B9C2B8A000FE23B /* ZYOldDealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYOldDealViewController.m; sourceTree = "<group>"; };
+		09D3EACF1B9C39D3000FE23B /* ZYBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYBrowseViewController.h; sourceTree = "<group>"; };
+		09D3EAD01B9C39D3000FE23B /* ZYBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYBrowseViewController.m; sourceTree = "<group>"; };
 		09FC9C831B7B6E6D002DDBD8 /* categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = categories.plist; sourceTree = "<group>"; };
 		09FC9C841B7B6E6D002DDBD8 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		09FC9C851B7B6E6D002DDBD8 /* cityGroups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityGroups.plist; sourceTree = "<group>"; };
@@ -388,6 +394,8 @@
 				093480E61B7A1A64000B2875 /* ZYNavigationController.m */,
 				096A285A1B8C3DBB00B66AC5 /* ZYDealViewController.h */,
 				096A285B1B8C3DBB00B66AC5 /* ZYDealViewController.m */,
+				09D3EACA1B9C2B8A000FE23B /* ZYOldDealViewController.h */,
+				09D3EACB1B9C2B8A000FE23B /* ZYOldDealViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -730,6 +738,7 @@
 				096A285D1B8C481500B66AC5 /* Search */,
 				093248FB1B9428E8007A1E7B /* Detail */,
 				099C31691B96C8D00022BB50 /* Collect */,
+				09D3EACD1B9C39B4000FE23B /* Browse */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -806,6 +815,23 @@
 				09937F5A1B8B079E00597929 /* ZYCenterLineLabel.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		09D3EACD1B9C39B4000FE23B /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				09D3EACE1B9C39B4000FE23B /* Controller */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
+		09D3EACE1B9C39B4000FE23B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				09D3EACF1B9C39D3000FE23B /* ZYBrowseViewController.h */,
+				09D3EAD01B9C39D3000FE23B /* ZYBrowseViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		09FC9C821B7B6E6D002DDBD8 /* Plist */ = {
@@ -935,6 +961,7 @@
 				093480F21B7A1A64000B2875 /* UIView+Extension.m in Sources */,
 				093480F71B7A1EA9000B2875 /* UIBarButtonItem+ZYExtension.m in Sources */,
 				09937FFA1B8B138300597929 /* SDWebImageDownloader.m in Sources */,
+				09D3EACC1B9C2B8A000FE23B /* ZYOldDealViewController.m in Sources */,
 				09937FE01B8B138300597929 /* NSObject+MJIvar.m in Sources */,
 				09937FEF1B8B138300597929 /* MJRefreshStateHeader.m in Sources */,
 				09937FE11B8B138300597929 /* NSObject+MJKeyValue.m in Sources */,
@@ -989,6 +1016,7 @@
 				099380011B8B138300597929 /* UIImage+WebP.m in Sources */,
 				09D368C61B8223E900C08ED4 /* ZYSort.m in Sources */,
 				093249091B943F2F007A1E7B /* ZYRestrictions.m in Sources */,
+				09D3EAD11B9C39D3000FE23B /* ZYBrowseViewController.m in Sources */,
 				09FC9CBC1B7B8C63002DDBD8 /* ZYCityViewController.m in Sources */,
 				09937FEC1B8B138300597929 /* MJRefreshBackStateFooter.m in Sources */,
 				09937FF11B8B138300597929 /* MJRefreshConst.m in Sources */,

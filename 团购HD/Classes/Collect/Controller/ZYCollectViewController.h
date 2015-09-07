@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ZYCollectViewController : UICollectionViewController
+#import "ZYOldDealViewController.h"
+@interface ZYCollectViewController : ZYOldDealViewController
 
 @end

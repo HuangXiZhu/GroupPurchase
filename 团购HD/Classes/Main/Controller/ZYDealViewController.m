@@ -7,7 +7,6 @@
 //
 
 #import "ZYDealViewController.h"
-#import "ZYHomeViewController.h"
 #import "ZYConst.h"
 #import "UIBarButtonItem+ZYExtension.h"
 #import "UIView+Extension.h"
