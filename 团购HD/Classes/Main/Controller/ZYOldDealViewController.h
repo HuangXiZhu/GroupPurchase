@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZYDeal;
+
 @interface ZYOldDealViewController : UICollectionViewController
 /**
  *  这个方法交给子类去实现，从而得到不同子类的具体背景图片
@@ -37,4 +39,10 @@
  *
  */
 - (NSString *)titleForNavBar;
+
+/**
+ *  让子类实现这个方法，删除掉自身数据库内拥有的deal
+ *
+ */
+- (void)deletedSqliteDeal:(ZYDeal *)deal;
 @end

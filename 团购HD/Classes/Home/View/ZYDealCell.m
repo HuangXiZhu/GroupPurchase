@@ -21,7 +21,13 @@
 /**
  属性名不能以new开头
  */
-@property (weak, nonatomic) IBOutlet UIImageView *dealNewView; 
+@property (weak, nonatomic) IBOutlet UIImageView *dealNewView;
+
+@property (weak, nonatomic) IBOutlet UIButton *coverBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *choosedImageView;
+
+- (IBAction)clickCoverbtn:(id)sender;
+
 @end
 
 @implementation ZYDealCell
@@ -60,6 +66,9 @@
     NSString *nowStr = [fmt stringFromDate:[NSDate date]];
     // 隐藏: 发布日期 < 今天
     self.dealNewView.hidden = ([deal.publish_date compare:nowStr] == NSOrderedAscending);
+    
+    self.coverBtn.hidden = !self.deal.isEditing;
+    self.choosedImageView.hidden = !self.deal.isChecking;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -68,5 +77,9 @@
 //    [[UIImage imageNamed:@"bg_dealcell"] drawAsPatternInRect:rect];
     // 拉伸
     [[UIImage imageNamed:@"bg_dealcell"] drawInRect:rect];
+}
+- (IBAction)clickCoverbtn:(id)sender {
+    self.deal.checking = !self.deal.checking;
+    self.choosedImageView.hidden = !self.deal.checking;
 }
 @end

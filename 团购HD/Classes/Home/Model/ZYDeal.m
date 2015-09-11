@@ -14,4 +14,9 @@
     return @{@"desc" : @"description"};
 }
 MJCodingImplementation
+
+- (BOOL)isEqual:(ZYDeal *)object
+{
+    return [self.deal_id isEqualToString:object.deal_id];
+}
 @end

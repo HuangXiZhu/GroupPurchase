@@ -17,8 +17,9 @@
 #import "ZYDealCell.h"
 #import "MBProgressHUD+MJ.h"
 #import "ZYDealTool.h"
+#import "UMSocial.h"
 
-@interface ZYDetailViewController () <UIWebViewDelegate, DPRequestDelegate>
+@interface ZYDetailViewController () <UIWebViewDelegate, DPRequestDelegate, UMSocialUIDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 - (IBAction)back;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -99,6 +100,7 @@
         // 旧的HTML5页面加载完毕
         NSString *ID = [self.deal.deal_id substringFromIndex:[self.deal.deal_id rangeOfString:@"-"].location + 1];
         NSString *urlStr = [NSString stringWithFormat:@"http://lite.m.dianping.com/group/deal/moreinfo/%@", ID];
+//        NSLog(@"++++++++   %@",urlStr);
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]];
     } else { // 详情页面加载完毕
         
@@ -136,8 +138,18 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:ZYCollectStateDidChangeNotification object:nil userInfo:info];
 }
 
+/**
+ *  分享，使用友盟分享
+ */
 - (IBAction)share {
     
+    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskLandscape];
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"55f27e9ee0f55a1c8b0039e5"
+                                      shareText:@"团购产品app，深刻帮您节省金钱🐶🐶......"
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,nil]
+                                       delegate:self];
 }
 
 

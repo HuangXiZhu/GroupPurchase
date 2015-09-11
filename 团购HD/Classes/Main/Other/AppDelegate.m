@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "ZYHomeViewController.h"
 #import "ZYNavigationController.h"
-
+#import "UMSocial.h"
 @interface AppDelegate ()
 
 @end
@@ -24,6 +24,8 @@
     
     ZYHomeViewController *homeVc = [[ZYHomeViewController alloc] init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:homeVc];
+    
+    [UMSocialData setAppKey:@"55f27e9ee0f55a1c8b0039e5"];
     return YES;
 }
 

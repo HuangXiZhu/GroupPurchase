@@ -37,4 +37,10 @@
 
 /** 团购限制条件 */
 @property (nonatomic, strong) ZYRestrictions *restrictions;
+
+/**  是否正在编辑  */
+@property (nonatomic, assign, getter=isEditing) BOOL editing;
+
+/**  是否被勾选  */
+@property (nonatomic, assign, getter=isChecking) BOOL checking;
 @end

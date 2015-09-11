@@ -160,6 +160,12 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     //文字字体
     textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:18.0];
     [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+    
+    // 设置不可用状态(disable)的文字属性
+    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionary];
+    disableTextAttrs[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
+    disableTextAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
+    [appearance setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
 }
 
 - (void)setupCollection
@@ -205,26 +211,58 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     if ([item.title isEqualToString:@"完成"]) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(clickEditBarButton:)];
         self.navigationItem.leftBarButtonItems = @[self.backItem];
+        
+        [self.deals enumerateObjectsUsingBlock:^(ZYDeal *obj, NSUInteger idx, BOOL *stop) {
+            obj.editing = NO;
+            obj.checking = NO;
+        }];
+        
     }
     else{
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(clickEditBarButton:)];
         self.navigationItem.leftBarButtonItems = self.navigationItem.leftBarButtonItems = @[self.backItem, self.selectedAllItem, self.unselectedAllItem, self.delectedItem];
+        
+        [self.deals enumerateObjectsUsingBlock:^(ZYDeal *obj, NSUInteger idx, BOOL *stop) {
+            obj.editing = YES;
+        }];
     }
+    
+    [self.collectionView reloadData];
 }
 
 - (void)clickSelectedAllItem
 {
-    NSLog(@"----clickSelectedAllItem");
+    [self.deals enumerateObjectsUsingBlock:^(ZYDeal *obj, NSUInteger idx, BOOL *stop) {
+        obj.checking = YES;
+    }];
+    [self.collectionView reloadData];
 }
 
 - (void)clickUnselectedAllItem
 {
-    NSLog(@"----clickUnselectedAllItem");
+    [self.deals enumerateObjectsUsingBlock:^(ZYDeal *obj, NSUInteger idx, BOOL *stop) {
+        obj.checking = NO;
+    }];
+    [self.collectionView reloadData];
 }
 
 - (void)clickDelectedItem
 {
-    NSLog(@"----clickDelectedItem");
+    NSMutableArray *deletedArray = [NSMutableArray array];
+    
+    //需要注意的是，在遍历数组的时候，是不可以删除数组内元素的
+    [self.deals enumerateObjectsUsingBlock:^(ZYDeal *obj, NSUInteger idx, BOOL *stop) {
+        if (obj.isChecking) {
+            [deletedArray addObject:obj];
+        }
+    }];
+    
+    [deletedArray enumerateObjectsUsingBlock:^(ZYDeal *obj, NSUInteger idx, BOOL *stop) {
+        [self.deals removeObject:obj];
+        [self deletedSqliteDeal:obj];
+    }];
+    
+    [self.collectionView reloadData];
 }
 
 
@@ -248,7 +286,11 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     //需要在请求发送就设置以此cell的布局
     [self viewWillTransitionToSize:CGSizeMake(self.collectionView.width, self.collectionView.height) withTransitionCoordinator:nil];
     
+    if (self.deals.count == 0 && [self.navigationItem.rightBarButtonItem.title isEqualToString:@"完成"]) {
+        [self clickEditBarButton:self.navigationItem.rightBarButtonItem];
+    }
     self.backgroundImageView.hidden = (self.deals.count != 0);
+    self.navigationItem.rightBarButtonItem.enabled = (self.deals.count != 0);
     return self.deals.count;
 }
 

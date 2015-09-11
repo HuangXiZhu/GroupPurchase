@@ -39,14 +39,19 @@
     return [ZYDealTool browseDealsCount];
 }
 
+- (NSString *)titleForNavBar
+{
+    return @"浏览记录";
+}
 #pragma mark ----与数据库进行交互
 - (void)loadDeals
 {
     [self.collectionView.footer beginRefreshing];
 }
 
-- (NSString *)titleForNavBar
+- (void)deletedSqliteDeal:(ZYDeal *)deal
 {
-    return @"浏览记录";
+    [ZYDealTool removeBrowseDeal:deal];
 }
+
 @end

@@ -55,6 +55,10 @@
     [self.collectionView.footer beginRefreshing];
 }
 
+- (void)deletedSqliteDeal:(ZYDeal *)deal
+{
+    [ZYDealTool removeCollectionDeal:deal];
+}
 #pragma mark ----notification系列
 - (void)collectStateDidChange:(NSNotification *)note
 {
@@ -77,4 +81,6 @@
 {
     return @"收藏";
 }
+
+
 @end

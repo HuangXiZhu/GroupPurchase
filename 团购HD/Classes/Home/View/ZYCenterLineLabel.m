@@ -13,7 +13,6 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    
     CGContextRef ref = UIGraphicsGetCurrentContext();
     [[UIColor blackColor] set];
     CGContextMoveToPoint(ref, 0, rect.size.height * 0.5);
