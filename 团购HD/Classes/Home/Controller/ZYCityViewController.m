@@ -139,7 +139,6 @@
 {
     [self.searchBar resignFirstResponder];
 }
-
 #pragma mark ----UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

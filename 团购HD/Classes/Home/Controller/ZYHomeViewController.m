@@ -60,6 +60,8 @@
     [self setupAwesomeMenu];
     
     [self setupNotification];
+    
+    [self cityDidChange:nil];
 }
 
 
@@ -155,8 +157,11 @@
 {
     NSString *cityName = notification.userInfo[ZYSelectedCityName];
     self.selectedCityName = cityName;
+    if (notification == nil) {
+        self.selectedCityName = @"广州";
+    }
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.districtItem.customView;
-    [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - 全部",cityName]];
+    [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - 全部",self.selectedCityName]];
     [homeTopItem setSubTitle:nil];
     
     [self.collectionView.header beginRefreshing];
@@ -175,10 +180,11 @@
 - (void)regionDidChange:(NSNotification *)notification
 {
     ZYRegion *region = notification.userInfo[ZYSelectRegion];
+    NSLog(@"++++++%@",region.name);
     NSString *subReginName = notification.userInfo[ZYSelectSubregionName];
     
     if (subReginName == nil || [region.name isEqualToString:@"全部"]) {
-        self.selectedRegionName = subReginName;
+        self.selectedRegionName = nil;
     }
     else{
         self.selectedRegionName = subReginName;
@@ -189,7 +195,13 @@
     }
     
     ZYHomeTopItem *homeTopItem = (ZYHomeTopItem *)self.districtItem.customView;
-    [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - %@", self.selectedCityName, region.name]];
+    
+    NSString *regionName = region.name;
+    
+    if (regionName == nil) {
+        regionName = @"全部";
+    }
+    [homeTopItem setTitle:[NSString stringWithFormat:@"%@ - %@", self.selectedCityName, regionName]];
     [homeTopItem setSubTitle:subReginName];
     
     [self.collectionView.header beginRefreshing];
