@@ -57,7 +57,7 @@
     if (cmps.day > 365) {
         [self.leftTimeButton setTitle:@"一年内不过期" forState:UIControlStateNormal];
     } else {
-        [self.leftTimeButton setTitle:[NSString stringWithFormat:@"%d天%d小时%d分钟", cmps.day, cmps.hour, cmps.minute] forState:UIControlStateNormal];
+        [self.leftTimeButton setTitle:[NSString stringWithFormat:@"%ld天%ld小时%ld分钟", (long)cmps.day, (long)cmps.hour, (long)cmps.minute] forState:UIControlStateNormal];
     }
     
     self.collectButton.selected = [ZYDealTool isCollected:self.deal];
