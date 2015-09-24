@@ -29,6 +29,7 @@
 #import "AwesomeMenu.h"
 #import "ZYCollectViewController.h"
 #import "ZYBrowseViewController.h"
+#import "ZYMapViewController.h"
 
 @interface ZYHomeViewController () <AwesomeMenuDelegate>
 @property (nonatomic, weak) UIBarButtonItem *categoryItem;
@@ -279,7 +280,9 @@
 
 - (void)didClickMapTopItem
 {
-    NSLog(@"-----didClickMapTopItem");
+    ZYMapViewController *mapVc = [[ZYMapViewController alloc] initWithNibName:@"ZYMapViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:mapVc animated:YES];
 }
 
 - (void)didClickSearchTopItem

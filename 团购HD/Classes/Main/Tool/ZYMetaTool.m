@@ -11,6 +11,7 @@
 #import "ZYCity.h"
 #import "ZYCategory.h"
 #import "ZYSort.h"
+#import "ZYDeal.h"
 static NSArray *_cities;
 static NSArray *_categories;
 static NSArray *_sorts;
@@ -48,5 +49,22 @@ static NSArray *_sorts;
         _sorts = [ZYSort objectArrayWithFilename:@"sorts.plist"];
     }
     return _sorts;
+}
+
++ (ZYCategory *)categoryWithDeal:(ZYDeal *)deal
+{
+    NSArray *cs = [self categories];
+    NSString *cname = [[deal.categories firstObject] substringToIndex:1];
+    //    NSLog(@"----%@",cname);
+    for (ZYCategory *c in cs) {
+        if ([c.name containsString:cname]) return c;
+        
+        for (NSString *obj in c.subcategories) {
+            if ([obj containsString:cname]) {
+                return c;
+            }
+        }
+    }
+    return nil;
 }
 @end

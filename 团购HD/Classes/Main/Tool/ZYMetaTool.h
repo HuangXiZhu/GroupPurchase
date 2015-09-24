@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ZYCategory, ZYDeal;
+
 @interface ZYMetaTool : NSObject
 /**
  *  返回城市
@@ -23,4 +25,6 @@
  *  返回所有的排序数据
  */
 + (NSArray *)sorts;
+
++ (ZYCategory *)categoryWithDeal:(ZYDeal *)deal;
 @end

@@ -8,11 +8,18 @@
 
 #import "ZYDeal.h"
 #import "MJExtension.h"
+#import "ZYBusiness.h"
 @implementation ZYDeal
 + (NSDictionary *)replacedKeyFromPropertyName
 {
     return @{@"desc" : @"description"};
 }
+
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"businesses" : [ZYBusiness class]};
+}
+
 MJCodingImplementation
 
 - (BOOL)isEqual:(ZYDeal *)object

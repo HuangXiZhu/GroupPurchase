@@ -174,6 +174,9 @@ static NSString * const reuseIdentifier = @"ZYDealViewControllerCell";
     
     //当不是请求第一页的时候，如果请求失败，那么应当减去这次请求的
     self.currentPage--;
+    
+    [self.collectionView.footer endRefreshing];
+    [self.collectionView.header endRefreshing];
 }
 
 
