@@ -78,18 +78,25 @@
 {
     // 注意:在iOS8中, 如果想要追踪用户的位置, 必须自己主动请求隐私权限
     self.mgr = [[CLLocationManager alloc] init];
-    self.mgr.delegate = self;
     self.mgr.desiredAccuracy = kCLLocationAccuracyBest;
     self.mgr.distanceFilter = 1000;
+    self.mgr.delegate = self;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        [self.mgr requestAlwaysAuthorization];//添加这句
+        [self.mgr requestAlwaysAuthorization];
     }
-    [self.mgr startUpdatingLocation];
     
-    // 设置地图跟踪用户的位置
+    //设置跟踪模式(MKUserTrackingModeFollow == 跟踪)
     self.mapView.userTrackingMode = MKUserTrackingModeFollow;
+    
     self.mapView.delegate = self;
+    
+    if ([CLLocationManager locationServicesEnabled]) {  //判断是否可以定位
+        [self.mgr startUpdatingLocation]; //如果网络正常、定位开关打开的情况下，开始定位
+    }
+    else{  //通知用户，检查网络，或者是否打开定位开关
+        NSLog(@"请检查网络");
+    }
 }
 
 #pragma mark ----dealloc
